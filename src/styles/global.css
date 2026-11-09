@@ -2,7 +2,7 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Deep graphite with a restrained electric-violet signal. Dark is default. */
+/* Native platform typography: SF on Apple, Segoe UI on Windows, Roboto/system UI elsewhere. */
 :root {
   color-scheme: dark;
   --paper: #0c0e12;
@@ -13,6 +13,9 @@
   --surface: #141820;
   --surface-raised: #1a202a;
   --signal-soft: #b3b5ff;
+  --ff-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+  --ff-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+  --ff-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 .light {
   color-scheme: light;
@@ -40,11 +43,33 @@
 @layer base {
   * { border-color: var(--color-line); }
   html { scroll-behavior: smooth; background: var(--color-paper); }
-  body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--ff-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--ff-display);
+    font-optical-sizing: auto;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-wrap: balance;
+  }
+  p, li { text-wrap: pretty; }
   ::selection { background: var(--color-signal); color: #fff; }
   :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
   }
 }
 .prose {
@@ -58,12 +83,10 @@
   --tw-prose-quote-borders: var(--color-signal);
   --tw-prose-code: var(--color-ink);
 }
-.prose :where(h2,h3,h4) { font-family: var(--font-display); }
+.prose :where(h2,h3,h4) { font-family: var(--ff-display); }
 .prose :where(a) { text-underline-offset: 3px; }
 
-
-/* Cinematic home hero: light mode changes the entire treatment, while the
-   Sketchfab iframe remains a decorative, non-interactive background layer. */
+/* Cinematic home hero — restrained contrast so the garment stays the visual focus. */
 .home-hero {
   background: #090b10;
   color: #fff;
@@ -74,10 +97,33 @@
     linear-gradient(115deg, #11151f 0%, #090b10 58%, #080a0e 100%);
 }
 .home-left-shade {
-  background: linear-gradient(90deg, #090b10 0%, #090b10ef 24%, #090b10a8 49%, #090b1040 100%);
+  background: linear-gradient(90deg, #090b10 0%, #090b10e8 23%, #090b1088 50%, #090b1020 100%);
 }
 .home-top-shade {
-  background: linear-gradient(0deg, #090b10 0%, transparent 26%, transparent 74%, #090b10a6 100%);
+  background: linear-gradient(0deg, #090b10 0%, transparent 25%, transparent 76%, #090b1099 100%);
+}
+.home-model {
+  transform: scale(1.035);
+  transform-origin: 55% 50%;
+}
+.hero-title {
+  font-weight: 650;
+  letter-spacing: -0.072em;
+}
+.hero-nav {
+  border-radius: 14px;
+  border-color: rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 3.5%);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+.hero-nav-link {
+  min-height: 58px;
+  transition: background-color .25s ease, color .25s ease;
+}
+.hero-nav-link:hover {
+  background: rgb(255 255 255 / 7%);
 }
 .light .home-hero {
   background: #e8e9ec;
@@ -89,27 +135,26 @@
     linear-gradient(115deg, #f4f3ef 0%, #e8e9ec 58%, #dfe1e7 100%);
 }
 .light .home-model {
-  opacity: .48 !important;
-  filter: saturate(.68) contrast(.96) brightness(1.12) !important;
+  opacity: .42 !important;
+  filter: saturate(.62) contrast(.94) brightness(1.14) !important;
 }
 .light .home-left-shade {
-  background: linear-gradient(90deg, #f4f3efff 0%, #f4f3efed 24%, #f4f3efaa 50%, #f4f3ef20 100%);
+  background: linear-gradient(90deg, #f4f3efff 0%, #f4f3efed 24%, #f4f3efaa 50%, #f4f3ef18 100%);
 }
 .light .home-top-shade {
   background: linear-gradient(0deg, #e8e9ec 0%, transparent 28%, transparent 74%, #f4f3efcc 100%);
 }
-.light .home-hero .hero-title,
-.light .home-hero .hero-title.text-white {
-  color: #17191f !important;
-}
-.light .home-hero .hero-accent { color: #5057d9 !important; }
+.light .home-hero .hero-title { color: #17191f !important; }
+.light .home-hero .hero-accent,
 .light .home-hero .hero-eyebrow { color: #5057d9 !important; }
 .light .home-hero .hero-eyebrow span { background: #5057d9 !important; }
 .light .home-hero .hero-subtitle { color: #4e535d !important; }
-.light .home-hero .hero-nav { border-color: #17191f44 !important; }
-.light .home-hero .hero-nav-link { border-color: #17191f22 !important; }
-.light .home-hero .hero-nav-link span { color: #3d4350 !important; }
-
+.light .home-hero .hero-nav {
+  border-color: #17191f25 !important;
+  background: rgb(255 255 255 / 38%);
+}
+.light .home-hero .hero-nav-link { border-color: #17191f1f !important; }
+.light .home-hero .hero-nav-link:hover { background: rgb(80 87 217 / 7%); }
 .light .home-hero .hero-nav-index,
 .light .home-hero .hero-nav-arrow { color: #5057d9 !important; }
 .light .home-hero .hero-nav-label { color: #333843 !important; }

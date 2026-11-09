@@ -4,7 +4,7 @@ export const SITE = {
   linkedin: 'https://www.linkedin.com/messaging/',
   description:
     'Textile engineer and 3D artist working across apparel development, technical design and digital product visualisation. Connecting garment knowledge with clear technical communication and compelling digital product experiences.',
-  status: 'Independent practice · Apparel / 3D / Technical design',
+  status: 'Design Director · Apparel / 3D / Technical design',
   locale: 'en',
 } as const;
 

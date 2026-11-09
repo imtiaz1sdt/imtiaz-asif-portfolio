@@ -1,24 +1,10 @@
 ---
 import { SITE } from '@/site.config';
-
 const year = new Date().getFullYear();
 ---
-
-<footer class="border-line border-t">
-  <div
-    class="text-ink-soft mx-auto flex max-w-3xl flex-col gap-4 px-6 py-8 font-mono text-xs sm:flex-row sm:items-center sm:justify-between"
-  >
-    <p>© {year} {SITE.name}. Built with Astro. By BracoZS</p>
-
-    <nav class="flex items-center gap-4" aria-label="Social">
-      {
-        SITE.social.map((link) => (
-          <a href={link.href} class="hover:text-signal transition-colors" rel="me">
-            {link.label}
-          </a>
-        ))
-      }
-      <a href="#top" class="hover:text-signal transition-colors"> Top ↑ </a>
-    </nav>
+<footer class="border-t border-line bg-[#080a0d] text-[#eceef2]">
+  <div class="mx-auto flex max-w-[1440px] flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+    <div><p class="font-display text-xl">{SITE.name}<span class="text-[#8589ff]">.</span></p><p class="mt-1 font-mono text-[8px] uppercase tracking-[.16em] text-white/45">© {year} · 3D Artist / Apparel Engineering / Digital Product Visualisation</p></div>
+    <div class="flex flex-wrap items-center gap-5 font-mono text-[9px] uppercase tracking-wider text-white/65"><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[#a5a8ff]">LinkedIn ↗</a><a href="#top" class="hover:text-[#a5a8ff]">Back to top ↑</a></div>
   </div>
 </footer>

@@ -2,20 +2,19 @@
 import { SITE, NAV_LINKS } from '@/site.config';
 const currentPath = Astro.url.pathname;
 ---
-<header class="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-xl">
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
+<header class="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+  <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-5 py-4 sm:px-8 lg:px-12">
     <a href="/" class="group shrink-0" aria-label={SITE.name + ' home'}>
-      <span class="font-display text-lg tracking-wide">{SITE.name}</span>
-      <span class="mt-0.5 block font-mono text-[9px] tracking-[.18em] text-ink-soft">3D / APPAREL / VISUALISATION</span>
+      <span class="font-display text-xl font-semibold tracking-[-.04em]">{SITE.name}<span class="text-signal">.</span></span>
+      <span class="mt-0.5 block font-mono text-[9px] uppercase tracking-[.16em] text-ink-soft">Independent 3D / Apparel practice</span>
     </a>
-    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+    <nav class="flex items-center gap-3 overflow-x-auto sm:gap-5 lg:gap-7" aria-label="Primary">
       {NAV_LINKS.map((link) => {
-        const isSectionAnchor = link.href.startsWith('/#');
-        const active = !isSectionAnchor && (currentPath === link.href || currentPath.startsWith(`${link.href}/`));
-        return <a href={link.href} aria-current={active ? 'page' : undefined} class:list={['font-mono text-[10px] uppercase tracking-[.14em] transition-colors hover:text-signal', active ? 'text-signal' : 'text-ink-soft']}>{link.label}</a>;
+        const section = link.href.startsWith('/#');
+        const active = !section && (currentPath === link.href || currentPath.startsWith(`${link.href}/`));
+        return <a href={link.href} aria-current={active ? 'page' : undefined} class:list={['shrink-0 font-mono text-[9px] uppercase tracking-[.12em] transition-colors hover:text-signal sm:text-[10px]', active ? 'text-signal' : 'text-ink-soft']}>{link.label}</a>;
       })}
-      <a href="/#contact" class="border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-wider transition-colors hover:border-signal hover:text-signal">Contact ↗</a>
+      <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="hidden shrink-0 border border-ink px-3 py-2 font-mono text-[9px] uppercase tracking-wider text-ink transition-colors hover:bg-ink hover:text-paper sm:inline-flex">LinkedIn ↗</a>
     </nav>
-    <a href="/#contact" class="font-mono text-[10px] uppercase text-signal md:hidden">Contact ↗</a>
   </div>
 </header>

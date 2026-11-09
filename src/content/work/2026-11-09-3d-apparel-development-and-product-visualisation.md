@@ -1,5 +1,5 @@
 ---
-title: 3D Apparel Case Study — Temporary Demo
+title: 3D Apparel Development & Product Visualisation
 summary: Temporary layout demo combining a third-party garment image and an attributed Sketchfab model. This is placeholder content, not an original client project.
 role: Portfolio layout and viewer integration demonstration — not client work
 category: 3d-visualisation
@@ -15,8 +15,8 @@ sketchfabModel: 97611a53e3b846f69e0655b210f72b2f
 deliverables:
   - Temporary cover image from Unsplash
   - Embedded Sketchfab demonstration model
-featured: true
-draft: false
+featured: false
+draft: true
 ---
 
 ## Temporary portfolio demonstration

@@ -1,49 +1,26 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
-
-const tools = ['TypeScript', 'Astro', 'React', 'Figma', 'Tailwind CSS', 'Node.js'];
+const strengths = ['Textile engineering foundation', '3D garment and product visualisation', 'Technical design and garment communication', 'Digital presentation and motion'];
 ---
-
-<BaseLayout title="About" description={`A bit about ${SITE.name} and how they work.`}>
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
-    <p class="text-ink-soft mb-6 font-mono text-xs tracking-[0.2em] uppercase">About</p>
-
-    <h1 class="font-display text-ink max-w-xl text-3xl font-medium sm:text-4xl">
-      {SITE.role}.
-    </h1>
-
-    <div class="prose prose-sm sm:prose-base mt-8 max-w-xl">
-      <p>
-        I start most projects by trying to find the smallest version of the problem — the one
-        screen, one flow, or one fix that actually matters — and build that first, properly, before
-        expanding outward.
-      </p>
-      <p>
-        That usually means fewer features than a kickoff deck promises, and more attention to the
-        parts people interact with constantly: load times, empty states, error messages, the things
-        that quietly decide whether software feels good to use.
-      </p>
-      <p>
-        Outside of client and product work, I maintain a couple of small open-source tools and write
-        occasional notes on what I learn building them.
-      </p>
+<BaseLayout title="About" description={`About ${SITE.name} — textile engineering, 3D apparel and digital product visualisation.`}>
+  <section class="mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-8 sm:pt-24">
+    <p class="font-mono text-[10px] uppercase tracking-[.2em] text-signal">About / Background</p>
+    <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight sm:text-7xl">Where textile knowledge meets digital craft.</h1>
+    <div class="mt-12 grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div class="prose prose-invert max-w-2xl text-sm leading-7">
+        <p>I am a textile engineer and 3D artist working at the intersection of apparel development, technical design and digital product visualisation.</p>
+        <p>My approach brings product understanding into the visual process: how a garment is shaped, how its materials and details work, and how those decisions can be communicated clearly through technical and digital presentation.</p>
+        <p>I enjoy work that connects creative direction with practical execution — from garment visuals and technical communication to rendered assets and motion-led presentation.</p>
+      </div>
+      <aside class="border border-line bg-surface p-7">
+        <p class="font-mono text-[10px] uppercase tracking-[.16em] text-signal">Areas of practice</p>
+        <ul class="mt-6 space-y-4">{strengths.map((item) => <li class="flex gap-3 border-b border-line pb-4 text-sm"><span class="text-signal">↗</span>{item}</li>)}</ul>
+        <p class="mt-6 text-xs leading-5 text-ink-soft">Professional experience, selected clients and measurable project outcomes will be added with verified details.</p>
+      </aside>
     </div>
-
-    <div class="mt-10">
-      <p class="text-ink-soft mb-3 font-mono text-xs tracking-[0.2em] uppercase">Tools</p>
-      <ul class="flex flex-wrap gap-2">
-        {
-          tools.map((tool) => (
-            <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
-              {tool}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <Button href={`mailto:${SITE.email}`} class="mt-10">Get in touch</Button>
+    <div class="mt-12"><SectionHeading eyebrow="Let's connect"/><Button href={`mailto:${SITE.email}`}>Contact me ↗</Button></div>
   </section>
 </BaseLayout>

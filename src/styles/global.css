@@ -1,40 +1,31 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
-
-/* Make the `dark:` variant respond to a `.dark` class instead of OS
-   preference, so the toggle in <ThemeToggle /> can override the system. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------------------------------------------------------------------
-   Design tokens (light values). Edit these five colors to re-skin the
-   entire site — every component reads from the tokens below, nothing
-   hardcodes a hex value.
-   --------------------------------------------------------------------- */
+/* Default is the preferred dark scheme. The .light class is set before paint
+   from localStorage by BaseHead and toggled by ThemeToggle. */
 :root {
-  color-scheme: light;
-
-  --paper: #f7f6f3; /* page background */
-  --ink: #15161b; /* primary text */
-  --ink-soft: #5b5d66; /* secondary text */
-  --signal: #3d3dff; /* the one accent color */
-  --line: #e4e2dc; /* borders, rules */
-  --surface: #efeeea; /* cards, raised panels */
-}
-
-.dark {
   color-scheme: dark;
-
-  --paper: #101114;
-  --ink: #f2f1ed;
-  --ink-soft: #9a9ca6;
-  --signal: #7b7bff;
-  --line: #26272c;
-  --surface: #1a1b20;
+  --paper: #0c0e12;
+  --ink: #f0f1f4;
+  --ink-soft: #9ca3af;
+  --signal: #8589ff;
+  --line: #292d36;
+  --surface: #141820;
+  --surface-raised: #1a202a;
+  --signal-soft: #b3b5ff;
 }
-
-/* `inline` keeps these resolving against the live --paper/--ink/etc custom
-   properties above at runtime, instead of Tailwind inlining a static value
-   at build time — required for the .dark class swap to work. */
+.light {
+  color-scheme: light;
+  --paper: #f4f3ef;
+  --ink: #17191f;
+  --ink-soft: #666c76;
+  --signal: #5057d9;
+  --line: #d8d8d5;
+  --surface: #eae9e4;
+  --surface-raised: #ffffff;
+  --signal-soft: #4148c6;
+}
 @theme inline {
   --color-paper: var(--paper);
   --color-ink: var(--ink);
@@ -42,56 +33,33 @@
   --color-signal: var(--signal);
   --color-line: var(--line);
   --color-surface: var(--surface);
-
-  /* Astro's Fonts API exposes the loaded families on --ff-* (see
-     astro.config.mjs). These map them to font-display / font-body /
-     font-mono utility classes. */
+  --color-surface-raised: var(--surface-raised);
   --font-display: var(--ff-display);
   --font-body: var(--ff-body);
   --font-mono: var(--ff-mono);
 }
-
 @layer base {
-  * {
-    border-color: var(--color-line);
-  }
-
+  * { border-color: var(--color-line); }
+  html { scroll-behavior: smooth; background: var(--color-paper); }
   body {
-    background-color: var(--color-paper);
+    margin: 0;
+    background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-
-  ::selection {
-    background-color: var(--color-signal);
-    color: var(--color-paper);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    body {
-      transition:
-        background-color 200ms ease,
-        color 200ms ease;
-    }
-  }
-
+  ::selection { background: var(--color-signal); color: #fff; }
+  :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation: none !important;
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
     }
   }
 }
-
-/* Tune @tailwindcss/typography to use the site's tokens instead of its
-   default gray scale, so rendered Markdown matches the rest of the page. */
 .prose {
   --tw-prose-body: var(--color-ink-soft);
   --tw-prose-headings: var(--color-ink);
@@ -103,10 +71,5 @@
   --tw-prose-quote-borders: var(--color-signal);
   --tw-prose-code: var(--color-ink);
 }
-.prose :where(h2, h3, h4) {
-  font-family: var(--font-display);
-}
-.prose :where(a) {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
+.prose :where(h2,h3,h4) { font-family: var(--font-display); }
+.prose :where(a) { text-underline-offset: 3px; }

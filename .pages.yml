@@ -1,6 +1,8 @@
 media:
   input: public/media
   output: /media
+  rename: safe
+  categories: [image]
 
 content:
   - name: work
@@ -17,6 +19,13 @@ content:
         label: Project title
         type: string
         required: true
+      - name: summary
+        label: Short project summary
+        type: text
+        required: true
+      - name: role
+        label: My role
+        type: string
       - name: category
         label: Portfolio category
         type: select
@@ -30,12 +39,6 @@ content:
               label: Technical design & tech packs
             - name: motion
               label: Motion & visual storytelling
-      - name: summary
-        label: Short project summary
-        type: text
-      - name: role
-        label: My role
-        type: string
       - name: client
         label: Client / context (optional)
         type: string
@@ -73,12 +76,12 @@ content:
       - name: url
         label: External project link (optional)
         type: string
-      - name: repo
-        label: Source link (optional)
-        type: string
       - name: featured
         label: Feature on homepage
         type: boolean
       - name: draft
         label: Keep hidden until ready
         type: boolean
+      - name: body
+        label: Case study
+        type: rich-text

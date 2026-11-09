@@ -60,3 +60,54 @@
 }
 .prose :where(h2,h3,h4) { font-family: var(--font-display); }
 .prose :where(a) { text-underline-offset: 3px; }
+
+
+/* Cinematic home hero: light mode changes the entire treatment, while the
+   Sketchfab iframe remains a decorative, non-interactive background layer. */
+.home-hero {
+  background: #090b10;
+  color: #fff;
+}
+.home-base {
+  background:
+    radial-gradient(ellipse at 72% 44%, #323b604d 0%, transparent 42%),
+    linear-gradient(115deg, #11151f 0%, #090b10 58%, #080a0e 100%);
+}
+.home-left-shade {
+  background: linear-gradient(90deg, #090b10 0%, #090b10ef 24%, #090b10a8 49%, #090b1040 100%);
+}
+.home-top-shade {
+  background: linear-gradient(0deg, #090b10 0%, transparent 26%, transparent 74%, #090b10a6 100%);
+}
+.light .home-hero {
+  background: #e8e9ec;
+  color: #17191f;
+}
+.light .home-base {
+  background:
+    radial-gradient(ellipse at 72% 44%, #a6abcf88 0%, transparent 44%),
+    linear-gradient(115deg, #f4f3ef 0%, #e8e9ec 58%, #dfe1e7 100%);
+}
+.light .home-model {
+  opacity: .48 !important;
+  filter: saturate(.68) contrast(.96) brightness(1.12) !important;
+}
+.light .home-left-shade {
+  background: linear-gradient(90deg, #f4f3efff 0%, #f4f3efed 24%, #f4f3efaa 50%, #f4f3ef20 100%);
+}
+.light .home-top-shade {
+  background: linear-gradient(0deg, #e8e9ec 0%, transparent 28%, transparent 74%, #f4f3efcc 100%);
+}
+.light .home-hero .hero-title,
+.light .home-hero .hero-title.text-white {
+  color: #17191f !important;
+}
+.light .home-hero .hero-accent { color: #5057d9 !important; }
+.light .home-hero .hero-eyebrow { color: #5057d9 !important; }
+.light .home-hero .hero-eyebrow span { background: #5057d9 !important; }
+.light .home-hero .hero-subtitle { color: #4e535d !important; }
+.light .home-hero .hero-nav { border-color: #17191f44 !important; }
+.light .home-hero .hero-nav-link { border-color: #17191f22 !important; }
+.light .home-hero .hero-nav-link span { color: #3d4350 !important; }
+.light .home-hero .hero-nav-link span.text-\\[\\#8589ff\\] { color: #5057d9 !important; }
+.light .home-hero .hero-meta { color: #555b66 !important; }

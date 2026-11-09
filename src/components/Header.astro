@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from '@/components/ThemeToggle.astro';
 import { SITE, NAV_LINKS } from '@/site.config';
 const currentPath = Astro.url.pathname;
 ---
@@ -15,11 +14,7 @@ const currentPath = Astro.url.pathname;
         return <a href={link.href} aria-current={active ? 'page' : undefined} class:list={['font-mono text-[10px] uppercase tracking-[.14em] transition-colors hover:text-signal', active ? 'text-signal' : 'text-ink-soft']}>{link.label}</a>;
       })}
       <a href="/#contact" class="border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-wider transition-colors hover:border-signal hover:text-signal">Contact ↗</a>
-      <ThemeToggle />
     </nav>
-    <div class="flex items-center gap-3 md:hidden">
-      <a href="/#contact" class="font-mono text-[10px] uppercase text-signal">Contact ↗</a>
-      <ThemeToggle />
-    </div>
+    <a href="/#contact" class="font-mono text-[10px] uppercase text-signal md:hidden">Contact ↗</a>
   </div>
 </header>

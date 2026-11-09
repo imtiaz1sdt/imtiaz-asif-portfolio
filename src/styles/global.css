@@ -1,40 +1,33 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
-
-/* Make the `dark:` variant respond to a `.dark` class instead of OS
-   preference, so the toggle in <ThemeToggle /> can override the system. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------------------------------------------------------------------
-   Design tokens (light values). Edit these five colors to re-skin the
-   entire site — every component reads from the tokens below, nothing
-   hardcodes a hex value.
-   --------------------------------------------------------------------- */
+/* Native platform typography: SF on Apple, Segoe UI on Windows, Roboto/system UI elsewhere. */
 :root {
-  color-scheme: light;
-
-  --paper: #f7f6f3; /* page background */
-  --ink: #15161b; /* primary text */
-  --ink-soft: #5b5d66; /* secondary text */
-  --signal: #3d3dff; /* the one accent color */
-  --line: #e4e2dc; /* borders, rules */
-  --surface: #efeeea; /* cards, raised panels */
-}
-
-.dark {
   color-scheme: dark;
-
-  --paper: #101114;
-  --ink: #f2f1ed;
-  --ink-soft: #9a9ca6;
-  --signal: #7b7bff;
-  --line: #26272c;
-  --surface: #1a1b20;
+  --paper: #0c0e12;
+  --ink: #f0f1f4;
+  --ink-soft: #9ca3af;
+  --signal: #8589ff;
+  --line: #292d36;
+  --surface: #141820;
+  --surface-raised: #1a202a;
+  --signal-soft: #b3b5ff;
+  --ff-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", sans-serif;
+  --ff-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+  --ff-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
-
-/* `inline` keeps these resolving against the live --paper/--ink/etc custom
-   properties above at runtime, instead of Tailwind inlining a static value
-   at build time — required for the .dark class swap to work. */
+.light {
+  color-scheme: light;
+  --paper: #f4f3ef;
+  --ink: #17191f;
+  --ink-soft: #666c76;
+  --signal: #5057d9;
+  --line: #d8d8d5;
+  --surface: #eae9e4;
+  --surface-raised: #ffffff;
+  --signal-soft: #4148c6;
+}
 @theme inline {
   --color-paper: var(--paper);
   --color-ink: var(--ink);
@@ -42,56 +35,43 @@
   --color-signal: var(--signal);
   --color-line: var(--line);
   --color-surface: var(--surface);
-
-  /* Astro's Fonts API exposes the loaded families on --ff-* (see
-     astro.config.mjs). These map them to font-display / font-body /
-     font-mono utility classes. */
+  --color-surface-raised: var(--surface-raised);
   --font-display: var(--ff-display);
   --font-body: var(--ff-body);
   --font-mono: var(--ff-mono);
 }
-
 @layer base {
-  * {
-    border-color: var(--color-line);
-  }
-
+  * { border-color: var(--color-line); }
+  html { scroll-behavior: smooth; background: var(--color-paper); }
   body {
-    background-color: var(--color-paper);
+    margin: 0;
+    background: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-body);
+    font-family: var(--ff-body);
+    font-feature-settings: "kern" 1, "liga" 1;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
-
-  ::selection {
-    background-color: var(--color-signal);
-    color: var(--color-paper);
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--ff-display);
+    font-optical-sizing: auto;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-wrap: balance;
   }
-
-  :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    body {
-      transition:
-        background-color 200ms ease,
-        color 200ms ease;
-    }
-  }
-
+  p, li { text-wrap: pretty; }
+  ::selection { background: var(--color-signal); color: #fff; }
+  :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation: none !important;
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
     }
   }
 }
-
-/* Tune @tailwindcss/typography to use the site's tokens instead of its
-   default gray scale, so rendered Markdown matches the rest of the page. */
 .prose {
   --tw-prose-body: var(--color-ink-soft);
   --tw-prose-headings: var(--color-ink);
@@ -103,10 +83,99 @@
   --tw-prose-quote-borders: var(--color-signal);
   --tw-prose-code: var(--color-ink);
 }
-.prose :where(h2, h3, h4) {
-  font-family: var(--font-display);
+.prose :where(h2,h3,h4) { font-family: var(--ff-display); }
+.prose :where(a) { text-underline-offset: 3px; }
+
+/* Cinematic home hero — restrained contrast so the garment stays the visual focus. */
+.home-hero {
+  background: #090b10;
+  color: #fff;
 }
-.prose :where(a) {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+.home-base {
+  background:
+    radial-gradient(ellipse at 72% 44%, #323b604d 0%, transparent 42%),
+    linear-gradient(115deg, #11151f 0%, #090b10 58%, #080a0e 100%);
+}
+.home-left-shade {
+  background: linear-gradient(90deg, #090b10 0%, #090b10e8 23%, #090b1088 50%, #090b1020 100%);
+}
+.home-top-shade {
+  background: linear-gradient(0deg, #090b10 0%, transparent 25%, transparent 76%, #090b1099 100%);
+}
+.home-model {
+  transform: scale(1.035);
+  transform-origin: 55% 50%;
+}
+.hero-title {
+  font-weight: 650;
+  letter-spacing: -0.072em;
+}
+.hero-nav {
+  border-radius: 14px;
+  border-color: rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 3.5%);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+.hero-nav-link {
+  min-height: 58px;
+  transition: background-color .25s ease, color .25s ease;
+}
+.hero-nav-link:hover {
+  background: rgb(255 255 255 / 7%);
+}
+.light .home-hero {
+  background: #e8e9ec;
+  color: #17191f;
+}
+.light .home-base {
+  background:
+    radial-gradient(ellipse at 72% 44%, #a6abcf88 0%, transparent 44%),
+    linear-gradient(115deg, #f4f3ef 0%, #e8e9ec 58%, #dfe1e7 100%);
+}
+.light .home-model {
+  opacity: .42 !important;
+  filter: saturate(.62) contrast(.94) brightness(1.14) !important;
+}
+.light .home-left-shade {
+  background: linear-gradient(90deg, #f4f3efff 0%, #f4f3efed 24%, #f4f3efaa 50%, #f4f3ef18 100%);
+}
+.light .home-top-shade {
+  background: linear-gradient(0deg, #e8e9ec 0%, transparent 28%, transparent 74%, #f4f3efcc 100%);
+}
+.light .home-hero .hero-title { color: #17191f !important; }
+.light .home-hero .hero-accent,
+.light .home-hero .hero-eyebrow { color: #5057d9 !important; }
+.light .home-hero .hero-eyebrow span { background: #5057d9 !important; }
+.light .home-hero .hero-subtitle { color: #4e535d !important; }
+.light .home-hero .hero-nav {
+  border-color: #17191f25 !important;
+  background: rgb(255 255 255 / 38%);
+}
+.light .home-hero .hero-nav-link { border-color: #17191f1f !important; }
+.light .home-hero .hero-nav-link:hover { background: rgb(80 87 217 / 7%); }
+.light .home-hero .hero-nav-index,
+.light .home-hero .hero-nav-arrow { color: #5057d9 !important; }
+.light .home-hero .hero-nav-label { color: #333843 !important; }
+.light .home-brand { color: #17191f !important; }
+.light .home-label { color: #4e535d !important; }
+.light .home-hero .hero-meta { color: #555b66 !important; }
+
+
+/* Explicit modern UI typography across all headings and body copy. */
+body, input, button, textarea, select {
+  font-family: var(--ff-body) !important;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--ff-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.hero-title {
+  font-family: var(--ff-display) !important;
+  font-size: clamp(3.25rem, 8.4vw, 8.6rem);
+  font-weight: 700 !important;
+  letter-spacing: -0.075em !important;
+  line-height: .88;
 }

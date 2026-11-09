@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/site.config';
+---
+<BaseLayout title="Contact" description="Contact Imtiaz Asif about apparel design, technical development and 3D product visualisation.">
+  <section class="mx-auto flex min-h-[72svh] max-w-[1440px] flex-col justify-center px-5 py-20 sm:px-8 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">Contact / Collaboration</p>
+    <h1 class="mt-5 max-w-5xl font-display text-5xl leading-[.94] tracking-[-.05em] sm:text-7xl">Let's make<br/><span class="text-signal">something tangible.</span></h1>
+    <p class="mt-7 max-w-xl text-sm leading-6 text-ink-soft">For apparel design, technical development, 3D product visualisation, digital product roles or creative collaborations, connect with me on LinkedIn.</p>
+    <div class="mt-9"><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-5 border border-signal bg-signal px-6 py-4 font-mono text-[10px] uppercase tracking-wider text-white transition-opacity hover:opacity-85">Message on LinkedIn <span>↗</span></a></div>
+  </section>
+</BaseLayout>

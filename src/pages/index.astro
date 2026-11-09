@@ -1,78 +1,39 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Button from '@/components/Button.astro';
-import WorkRow from '@/components/WorkRow.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
 
-const allWork = await getCollection('work', ({ data }) => !data.draft);
-const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featured = sorted.filter((entry) => entry.data.featured);
-const rest = sorted.filter((entry) => !entry.data.featured);
-const selected = [...featured, ...rest].slice(0, 5);
+const modelUrl = 'https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f/embed?autostart=1&autospin=0.12&camera=0&ui_stop=0&dnt=1&ui_theme=dark';
 ---
-
-<BaseLayout title={SITE.name}>
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
-    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
-      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
-      {SITE.status}
-    </p>
-
-    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
-      {SITE.tagline}
-    </h1>
-
-    <p class="text-ink-soft mt-6 max-w-md">
-      {SITE.role} — based on the work below, not a list of buzzwords.
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <Button href="/work" variant="solid">View the work →</Button>
-      <Button href="#contact" variant="ghost">Say hello</Button>
+<BaseLayout title={SITE.name} description={SITE.description}>
+  <section class="home-hero relative isolate min-h-[100svh] overflow-hidden bg-[#090b10] text-white">
+    <div class="home-base absolute inset-0 -z-30"></div>
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <iframe
+        title="Automatically rotating 3D garment background — demonstration model"
+        src={modelUrl}
+        class="home-model absolute left-[18%] top-[-8%] h-[116%] w-[105%] min-w-[880px] border-0 opacity-90"
+        style="pointer-events:none; filter:saturate(.82) contrast(1.06);"
+        allow="autoplay"
+        referrerpolicy="strict-origin-when-cross-origin"
+        loading="eager"
+        tabindex="-1"
+        aria-hidden="true"
+      ></iframe>
     </div>
-  </section>
+    <div class="home-left-shade pointer-events-none absolute inset-0 -z-10"></div>
+    <div class="home-top-shade pointer-events-none absolute inset-0 -z-10"></div>
 
-  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Selected work" count={allWork.length} />
-    <div>
-      {selected.map((entry) => <WorkRow entry={entry} />)}
+    <div class="relative mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-end px-5 pb-28 pt-28 sm:px-8 sm:pb-32 lg:px-12">
+      <div class="hero-copy mb-12 max-w-3xl sm:mb-16">
+        <p class="hero-eyebrow mb-5 flex items-center gap-3 font-mono text-[9px] uppercase tracking-[.24em] text-[#a9adff] sm:text-[10px]"><span class="h-px w-8 bg-[#8589ff]"></span> Apparel engineering × digital product craft</p>
+        <h1 class="hero-title font-display text-[clamp(3.2rem,8.5vw,8.7rem)] font-medium leading-[.84] tracking-[-.065em] text-white">Apparel.<br/><span class="hero-accent text-[#a4a8ff]">Engineered</span><br/>in 3D.</h1>
+        <p class="hero-subtitle mt-6 max-w-lg text-sm leading-6 text-white/65 sm:text-base">Imtiaz Asif — 3D Artist, Apparel Engineering & Digital Product Visualisation.</p>
+      </div>
+
+      <div class="hero-meta mt-4 flex flex-col justify-between gap-2 font-mono text-[8px] uppercase tracking-[.12em] text-white/35 sm:flex-row sm:items-center">
+        <span>3D Artist / Apparel Engineering / Digital Product Visualisation</span>
+        <span>Background model: Hoodie by Virtual Pandora · CC BY</span>
+      </div>
     </div>
-    {
-      allWork.length > selected.length && (
-        <div class="mt-6">
-          <a
-            href="/work"
-            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
-          >
-            View all {allWork.length} projects →
-          </a>
-        </div>
-      )
-    }
-  </section>
-
-  <section id="about" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="About" />
-    <p class="text-ink-soft max-w-xl">
-      {SITE.description}
-    </p>
-    <a href="/about" class="text-signal mt-4 inline-block font-mono text-xs hover:underline">
-      More about how I work →
-    </a>
-  </section>
-
-  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
-    <SectionHeading eyebrow="Let's talk" />
-    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
-      Have something worth building?
-    </p>
-    <a
-      href={`mailto:${SITE.email}`}
-      class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline"
-    >
-      {SITE.email}
-    </a>
   </section>
 </BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import { SITE } from '@/site.config';
+const modelUrl = 'https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f';
+const embedUrl = 'https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f/embed?autostart=1&autospin=0.12&ui_theme=dark&ui_infos=0';
+---
+<BaseLayout title="3D Studio" description="Interactive 3D garment viewer and digital apparel visualisation by Imtiaz Asif.">
+  <section class="mx-auto max-w-[1440px] px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">Interactive space / 3D Studio</p>
+    <div class="mt-5 grid gap-6 md:grid-cols-[1fr_.7fr] md:items-end"><h1 class="font-display text-5xl leading-[.93] tracking-[-.05em] sm:text-7xl">Explore the<br/><span class="text-signal">digital garment.</span></h1><p class="max-w-md text-sm leading-6 text-ink-soft">A 3D product should be explored, not just viewed. Rotate, zoom and inspect this embedded garment model as a demonstration of the interactive presentation planned for original portfolio projects.</p></div>
+  </section>
+  <section class="mx-auto max-w-[1440px] px-5 pb-20 sm:px-8 lg:px-12">
+    <div class="overflow-hidden border border-line bg-[#080a0e] shadow-2xl shadow-black/20">
+      <div class="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-6"><span class="font-mono text-[9px] uppercase tracking-[.16em] text-white/55">Viewer / Garment 001</span><span class="font-mono text-[9px] text-[#a4a7ff]">INTERACTIVE 3D</span></div>
+      <div class="aspect-[4/3] w-full sm:aspect-[16/9]">
+        <iframe title="Sketchfab interactive hoodie model by Virtual Pandora" src={embedUrl} class="h-full w-full border-0" allow="autoplay; fullscreen; xr-spatial-tracking" referrerpolicy="strict-origin-when-cross-origin" loading="eager" allowfullscreen></iframe>
+      </div>
+      <div class="flex flex-col justify-between gap-3 border-t border-white/10 px-4 py-4 sm:flex-row sm:items-center sm:px-6"><div><p class="text-sm text-white">Hoodie · CLO3D garment study</p><p class="mt-1 text-xs text-white/50">Temporary third-party example · not Imtiaz Asif's work</p></div><a href={modelUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-[9px] uppercase tracking-wider text-[#a4a7ff] hover:text-white">View model & creator details ↗</a></div>
+    </div>
+    <p class="mt-3 text-xs leading-5 text-ink-soft">Attribution: “Hoodie” by Virtual Pandora, Sketchfab, Creative Commons Attribution. The model is used only to demonstrate the embedded viewer. Replace with an original model before presenting this section as a work sample.</p>
+    <div class="mt-14 grid gap-8 border-t border-line pt-10 md:grid-cols-3">
+      <div><p class="font-mono text-[9px] text-signal">01 / EXPLORE</p><h2 class="mt-3 font-display text-2xl">Rotate & inspect</h2><p class="mt-2 text-sm leading-6 text-ink-soft">Drag to rotate the garment, scroll to zoom, and explore its form from different angles.</p></div>
+      <div><p class="font-mono text-[9px] text-signal">02 / PRESENT</p><h2 class="mt-3 font-display text-2xl">Contextual product view</h2><p class="mt-2 text-sm leading-6 text-ink-soft">A future project viewer can pair the 3D model with technical flats, materials, construction notes and final renders.</p></div>
+      <div><p class="font-mono text-[9px] text-signal">03 / EXTEND</p><h2 class="mt-3 font-display text-2xl">Case-study integration</h2><p class="mt-2 text-sm leading-6 text-ink-soft">Each original 3D project can have its own model UID, still-image gallery, project brief and deliverables, managed in the CMS.</p></div>
+    </div>
+    <div class="mt-12 flex flex-wrap gap-3"><Button href="/work/category/3d-visualisation" variant="solid">3D portfolio category ↗</Button><Button href={SITE.linkedin} variant="ghost">Discuss a 3D project ↗</Button></div>
+  </section>
+</BaseLayout>

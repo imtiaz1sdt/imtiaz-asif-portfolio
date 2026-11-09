@@ -1,5 +1,6 @@
 ---
 import Header from '@/components/Header.astro';
+import BottomNav from '@/components/BottomNav.astro';
 import Footer from '@/components/Footer.astro';
 import { SITE } from '@/site.config';
 import '@/styles/global.css';
@@ -10,10 +11,9 @@ interface Props {
   description?: string;
   image?: string;
 }
-
 const { title, description = SITE.description, image = '/og-image.png' } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
-
 <!doctype html>
 <html lang={SITE.locale}>
   <head>
@@ -21,9 +21,8 @@ const { title, description = SITE.description, image = '/og-image.png' } = Astro
   </head>
   <body id="top" class="bg-paper text-ink">
     <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+    <main class={!isHome ? 'pb-24' : ''}><slot /></main>
+    {!isHome && <Footer />}
+    <BottomNav />
   </body>
 </html>

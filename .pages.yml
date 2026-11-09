@@ -1,0 +1,101 @@
+media:
+  input: public/media
+  output: /media
+  rename: safe
+  categories: [image]
+
+content:
+  - name: work
+    label: Portfolio projects
+    type: collection
+    path: src/content/work
+    view:
+      primary: title
+      fields: [category, date, featured, draft]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Project title
+        type: string
+        required: true
+      - name: summary
+        label: Short project summary
+        type: text
+        required: true
+      - name: role
+        label: My role
+        type: string
+        required: true
+      - name: category
+        label: Portfolio category
+        type: select
+        default: 3d-visualisation
+        options:
+          values:
+            - name: apparel
+              label: Apparel & product design
+            - name: 3d-visualisation
+              label: 3D apparel & visualisation
+            - name: technical-design
+              label: Technical design & tech packs
+            - name: motion
+              label: Motion & visual storytelling
+      - name: client
+        label: Client / context (optional)
+        type: string
+      - name: date
+        label: Project date
+        type: date
+        required: true
+      - name: tags
+        label: Skills / tags
+        type: string
+        list: true
+      - name: cover
+        label: Upload cover image to this repository
+        type: image
+        options:
+          path: projects
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+      - name: coverUrl
+        label: External cover image URL (e.g. ImageKit)
+        type: string
+        description: Use an ImageKit URL for large or externally hosted portfolio media.
+      - name: gallery
+        label: Upload image gallery to this repository
+        type: image
+        options:
+          path: projects/gallery
+          multiple:
+            max: 16
+          unique: true
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+      - name: galleryUrls
+        label: External gallery image URLs
+        type: string
+        list: true
+        description: Paste one ImageKit URL per gallery item.
+      - name: sketchfabModel
+        label: Sketchfab model UID (optional)
+        type: string
+      - name: deliverables
+        label: Deliverables
+        type: string
+        list: true
+      - name: url
+        label: External project link (optional)
+        type: string
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+        default: false
+      - name: draft
+        label: Keep hidden until ready
+        type: boolean
+        default: true
+      - name: body
+        label: Case study
+        type: rich-text

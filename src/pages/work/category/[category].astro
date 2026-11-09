@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { WORK_CATEGORIES, SITE } from '@/site.config';
+export function getStaticPaths() {
+  return WORK_CATEGORIES.map((category) => ({ params: { category: category.id }, props: { category } }));
+}
+const { category } = Astro.props;
+const allWork = await getCollection('work', ({ data }) => !data.draft);
+const projects = allWork.filter((entry) => entry.data.category === category.id).sort((a,b) => b.data.date.valueOf()-a.data.date.valueOf());
+---
+<BaseLayout title={category.label} description={category.description}>
+  <section class="mx-auto max-w-[1440px] px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:px-12">
+    <a href="/work" class="font-mono text-[9px] uppercase tracking-wider text-ink-soft hover:text-signal">← All categories</a>
+    <p class="mt-9 font-mono text-[9px] uppercase tracking-[.2em] text-signal">{category.number} / Portfolio category</p>
+    <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[.95] tracking-[-.05em] sm:text-7xl">{category.label}</h1>
+    <p class="mt-6 max-w-2xl text-sm leading-6 text-ink-soft">{category.description}</p>
+    {projects.length ? <div class="mt-12 grid gap-4 md:grid-cols-2">{projects.map((entry) => <a href={`/work/${entry.id}`} class="border border-line bg-surface p-7 transition-colors hover:border-signal"><p class="font-mono text-[9px] uppercase text-signal">{entry.data.tags.join(' / ')}</p><h2 class="mt-4 font-display text-3xl">{entry.data.title}</h2><p class="mt-3 text-sm leading-6 text-ink-soft">{entry.data.summary}</p><span class="mt-8 inline-block font-mono text-[9px] uppercase text-signal">Open case study ↗</span></a>)}</div> : <div class="mt-12 max-w-3xl border border-line bg-surface p-8 sm:p-12"><p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">Case studies in preparation</p><h2 class="mt-4 font-display text-3xl sm:text-4xl">Original work will appear here.</h2><p class="mt-4 max-w-xl text-sm leading-6 text-ink-soft">This category is ready for project entries. We’ll add your own approved work, process images, technical documents and Sketchfab models here. No fictional client work is displayed.</p><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex border border-line px-5 py-3 font-mono text-[9px] uppercase tracking-wider text-ink hover:border-signal hover:text-signal">Discuss my work on LinkedIn ↗</a></div>}
+  </section>
+</BaseLayout>

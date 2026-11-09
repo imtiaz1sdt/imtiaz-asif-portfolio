@@ -1,22 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import WorkRow from '@/components/WorkRow.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-
-const allWork = (await getCollection('work', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+import { WORK_CATEGORIES } from '@/site.config';
 ---
-
-<BaseLayout
-  title="Work"
-  description="Selected projects in product design and frontend engineering."
->
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-24 sm:pt-24">
-    <SectionHeading eyebrow="All work" count={allWork.length} />
-    <div>
-      {allWork.map((entry) => <WorkRow entry={entry} />)}
-    </div>
+<BaseLayout title="Selected Work" description="Explore apparel design, 3D visualisation, technical design and motion work by Imtiaz Asif.">
+  <section class="mx-auto max-w-[1440px] px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">Portfolio / Index</p>
+    <h1 class="mt-5 font-display text-5xl leading-[.93] tracking-[-.05em] sm:text-7xl">Selected work.<br/><span class="text-signal">Distinct disciplines.</span></h1>
+    <p class="mt-6 max-w-2xl text-sm leading-6 text-ink-soft">Browse by the type of work and capability. Project case studies will include the brief, role, process, technical communication, final visuals and deliverables.</p>
+    <div class="mt-12 grid gap-3 sm:grid-cols-2">{WORK_CATEGORIES.map((cat) => <a href={`/work/category/${cat.id}`} class="group border border-line bg-surface p-7 transition-all hover:-translate-y-1 hover:border-signal sm:p-9"><div class="flex justify-between"><span class="font-mono text-[9px] text-signal">{cat.number} / CATEGORY</span><span class="text-ink-soft transition-transform group-hover:translate-x-1">↗</span></div><h2 class="mt-12 font-display text-3xl sm:text-4xl">{cat.label}</h2><p class="mt-3 max-w-md text-sm leading-6 text-ink-soft">{cat.description}</p><p class="mt-9 font-mono text-[9px] uppercase tracking-wider text-ink-soft">Browse category →</p></a>)}</div>
   </section>
 </BaseLayout>

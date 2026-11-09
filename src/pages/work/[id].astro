@@ -9,18 +9,20 @@ export async function getStaticPaths() {
 }
 interface Props { entry: CollectionEntry<'work'>; }
 const { entry } = Astro.props;
-const { title, summary, role, category, client, date, tags, cover, gallery, sketchfabModel, deliverables } = entry.data;
+const { title, summary, role, category, client, date, tags, cover, coverUrl, gallery, galleryUrls, sketchfabModel, deliverables } = entry.data;
 const { Content } = await render(entry);
 const categoryInfo = WORK_CATEGORIES.find((item) => item.id === category);
 const safeModelId = sketchfabModel && /^[a-zA-Z0-9]+$/.test(sketchfabModel) ? sketchfabModel : undefined;
+const coverSrc = cover || coverUrl;
+const galleryItems = [...gallery, ...galleryUrls];
 ---
 <BaseLayout title={title} description={summary}>
   <article class="mx-auto max-w-[1280px] px-5 pb-24 pt-14 sm:px-8 sm:pt-20 lg:px-12">
     <a href={`/work/category/${category}`} class="font-mono text-[9px] uppercase tracking-wider text-ink-soft hover:text-signal">← {categoryInfo?.label || 'Portfolio category'}</a>
     <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_.55fr] lg:items-end"><div><p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">{categoryInfo?.number} / {categoryInfo?.label}</p><h1 class="mt-5 font-display text-5xl leading-[.95] tracking-[-.05em] sm:text-7xl">{title}</h1><p class="mt-5 max-w-2xl text-sm leading-6 text-ink-soft">{summary}</p></div><dl class="grid grid-cols-2 gap-x-5 gap-y-4 border-t border-line pt-5 text-xs"><div><dt class="font-mono text-[9px] uppercase text-ink-soft">Role</dt><dd class="mt-2">{role}</dd></div><div><dt class="font-mono text-[9px] uppercase text-ink-soft">Date</dt><dd class="mt-2">{formatDate(date)}</dd></div>{client && <div><dt class="font-mono text-[9px] uppercase text-ink-soft">Client / Context</dt><dd class="mt-2">{client}</dd></div>}<div><dt class="font-mono text-[9px] uppercase text-ink-soft">Discipline</dt><dd class="mt-2">{categoryInfo?.short}</dd></div></dl></div>
-    {cover && <div class="mt-12 overflow-hidden border border-line bg-surface"><img src={cover} alt={title} class="max-h-[720px] w-full object-cover"/></div>}
+    {coverSrc && <div class="mt-12 overflow-hidden border border-line bg-surface"><img src={coverSrc} alt={title} class="max-h-[720px] w-full object-cover"/></div>}
     {safeModelId && <div class="mt-12 overflow-hidden border border-line bg-[#080a0e]"><div class="border-b border-white/10 px-4 py-3 font-mono text-[9px] uppercase tracking-wider text-white/60">Interactive 3D model</div><div class="aspect-[16/10]"><iframe title={`Interactive 3D model for ${title}`} src={`https://sketchfab.com/models/${safeModelId}/embed?autostart=0&ui_theme=dark`} class="h-full w-full border-0" allow="autoplay; fullscreen; xr-spatial-tracking" loading="lazy" allowfullscreen></iframe></div></div>}
-    {gallery.length>0 && <div class="mt-8 grid gap-4 sm:grid-cols-2">{gallery.map((image, index) => <img src={image} alt={`${title} — image ${index+1}`} loading="lazy" class="h-auto w-full border border-line object-cover"/>)}</div>}
+    {galleryItems.length>0 && <div class="mt-8 grid gap-4 sm:grid-cols-2">{galleryItems.map((image, index) => <img src={image} alt={`${title} — image ${index+1}`} loading="lazy" class="h-auto w-full border border-line object-cover"/>)}</div>}
     <div class="mt-14 grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><aside><p class="font-mono text-[9px] uppercase tracking-[.17em] text-signal">Project toolkit</p><div class="mt-4 flex flex-wrap gap-2">{tags.map((tag) => <span class="border border-line px-3 py-2 font-mono text-[9px] text-ink-soft">{tag}</span>)}</div>{deliverables.length>0 && <><p class="mt-9 font-mono text-[9px] uppercase tracking-[.17em] text-signal">Deliverables</p><ul class="mt-4 space-y-3 text-xs text-ink-soft">{deliverables.map((item) => <li>↗ {item}</li>)}</ul></>}</aside><div class="prose prose-sm sm:prose-base max-w-3xl"><Content /></div></div>
     <div class="mt-16 border-t border-line pt-8"><p class="font-mono text-[9px] uppercase tracking-[.17em] text-ink-soft">Interested in a similar project?</p><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex border border-signal px-5 py-3 font-mono text-[9px] uppercase tracking-wider text-signal hover:bg-signal hover:text-white">Connect on LinkedIn ↗</a></div>
   </article>

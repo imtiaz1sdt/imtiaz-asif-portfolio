@@ -297,10 +297,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 </style>
 
 <script>
-  const tabs = [...document.querySelectorAll('[data-preview-tab]')];
-  const panels = [...document.querySelectorAll('[data-preview-panel]')];
-  const current = document.querySelector('#preview-current');
-  const canvas = document.querySelector('#preview-canvas');
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-preview-tab]')];
+  const panels = [...document.querySelectorAll<HTMLElement>('[data-preview-panel]')];
+  const current = document.querySelector<HTMLElement>('#preview-current');
+  const canvas = document.querySelector<HTMLElement>('#preview-canvas');
   const labels = {
     home: '01 — Home', work: '02 — Work', category: '03 — Category',
     case: '04 — Case study', studio: '05 — 3D Studio',
@@ -322,11 +322,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       if (current) current.textContent = labels[key];
     });
   });
-  document.querySelectorAll('[data-preview-size]').forEach((button) => {
+  document.querySelectorAll<HTMLButtonElement>('[data-preview-size]').forEach((button) => {
     button.addEventListener('click', () => {
       const mobile = button.dataset.previewSize === 'mobile';
       canvas?.classList.toggle('is-mobile', mobile);
-      document.querySelectorAll('[data-preview-size]').forEach((item) => {
+      document.querySelectorAll<HTMLButtonElement>('[data-preview-size]').forEach((item) => {
         const active = item === button;
         item.classList.toggle('is-active', active);
         item.setAttribute('aria-pressed', String(active));

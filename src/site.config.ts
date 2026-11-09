@@ -6,10 +6,7 @@ export const SITE = {
   description:
     'I am a textile engineer and 3D artist working across apparel development, technical design and digital product visualisation. My work connects garment understanding with clear, compelling visual communication.',
   status: 'Independent 3D artist · Apparel & product visualisation',
-  social: [
-    { label: 'Portfolio', href: 'https://imtiaz-asif.com' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  ],
+  social: [],
   locale: 'en',
 } as const;
 

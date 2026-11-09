@@ -309,17 +309,19 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const key = tab.dataset.previewTab;
+      if (!key || !(key in labels)) return;
+      const activeKey = key as keyof typeof labels;
       tabs.forEach((item) => {
         const active = item === tab;
         item.classList.toggle('is-active', active);
         item.setAttribute('aria-selected', String(active));
       });
       panels.forEach((panel) => {
-        const active = panel.dataset.previewPanel === key;
+        const active = panel.dataset.previewPanel === activeKey;
         panel.classList.toggle('is-active', active);
         panel.hidden = !active;
       });
-      if (current) current.textContent = labels[key];
+      if (current) current.textContent = labels[activeKey];
     });
   });
   document.querySelectorAll<HTMLButtonElement>('[data-preview-size]').forEach((button) => {

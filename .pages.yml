@@ -1,0 +1,84 @@
+media:
+  input: public/media
+  output: /media
+
+content:
+  - name: work
+    label: Portfolio projects
+    type: collection
+    path: src/content/work
+    view:
+      primary: title
+      fields: [category, date, featured, draft]
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Project title
+        type: string
+        required: true
+      - name: category
+        label: Portfolio category
+        type: select
+        options:
+          values:
+            - name: apparel
+              label: Apparel & product design
+            - name: 3d-visualisation
+              label: 3D apparel & visualisation
+            - name: technical-design
+              label: Technical design & tech packs
+            - name: motion
+              label: Motion & visual storytelling
+      - name: summary
+        label: Short project summary
+        type: text
+      - name: role
+        label: My role
+        type: string
+      - name: client
+        label: Client / context (optional)
+        type: string
+      - name: date
+        label: Project date
+        type: date
+      - name: tags
+        label: Skills / tags
+        type: string
+        list: true
+      - name: cover
+        label: Cover image
+        type: image
+        options:
+          path: projects
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+      - name: gallery
+        label: Project gallery
+        type: image
+        options:
+          path: projects/gallery
+          multiple:
+            max: 16
+          unique: true
+          extensions: [jpg, jpeg, png, webp, avif]
+          rename: safe
+      - name: sketchfabModel
+        label: Sketchfab model UID (optional)
+        type: string
+      - name: deliverables
+        label: Deliverables
+        type: string
+        list: true
+      - name: url
+        label: External project link (optional)
+        type: string
+      - name: repo
+        label: Source link (optional)
+        type: string
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+      - name: draft
+        label: Keep hidden until ready
+        type: boolean

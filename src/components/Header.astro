@@ -1,8 +1,7 @@
 ---
 import ThemeToggle from '@/components/ThemeToggle.astro';
-import { SITE, NAV_LINKS } from '@/site.config';
-const currentPath = Astro.url.pathname;
-const isHome = currentPath === '/';
+import { SITE } from '@/site.config';
+const isHome = Astro.url.pathname === '/';
 ---
 {isHome ? (
   <header class="absolute inset-x-0 top-0 z-50">
@@ -18,23 +17,7 @@ const isHome = currentPath === '/';
         <span class="font-display text-lg font-semibold tracking-[-.04em] sm:text-xl">{SITE.name}<span class="text-signal">.</span></span>
         <span class="mt-0.5 hidden font-mono text-[8px] uppercase tracking-[.17em] text-ink-soft sm:block">Apparel / 3D / Technical</span>
       </a>
-      <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
-        {NAV_LINKS.map((link) => {
-          const active = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
-          return <a href={link.href} aria-current={active ? 'page' : undefined} class:list={['shrink-0 font-mono text-[9px] uppercase tracking-[.16em] transition-colors hover:text-signal', active ? 'text-signal' : 'text-ink-soft']}>{link.label}</a>;
-        })}
-        <ThemeToggle />
-      </nav>
-      <div class="flex items-center gap-3 lg:hidden">
-        <details class="relative">
-          <summary class="cursor-pointer list-none font-mono text-[9px] uppercase tracking-wider text-ink-soft">Menu <span class="text-signal">＋</span></summary>
-          <div class="absolute right-0 top-8 z-50 min-w-48 border border-line bg-surface p-3 shadow-2xl">
-            {NAV_LINKS.map((link) => <a href={link.href} class="block px-3 py-3 font-mono text-[10px] uppercase tracking-wider text-ink-soft hover:text-signal">{link.label}</a>)}
-            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="block border-t border-line px-3 py-3 font-mono text-[10px] uppercase tracking-wider text-signal">LinkedIn ↗</a>
-          </div>
-        </details>
-        <ThemeToggle />
-      </div>
+      <ThemeToggle />
     </div>
   </header>
 )}

@@ -13,12 +13,14 @@ const work = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
+    coverUrl: z.url().optional(),
     gallery: z.array(z.string()).default([]),
+    galleryUrls: z.array(z.url()).default([]),
     sketchfabModel: z.string().optional(),
     deliverables: z.array(z.string()).default([]),
     url: z.url().optional(),
     featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
+    draft: z.boolean().default(true),
   }),
 });
 export const collections = { work };

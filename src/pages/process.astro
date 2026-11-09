@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const apparel = [
+  ['01','Brief & product intent','Clarify the product, target user, brand direction and design constraints.'],
+  ['02','Design development','Explore silhouette, colour, materials, trims and visual direction.'],
+  ['03','Technical development','Resolve garment details, flats, measurements and construction communication.'],
+  ['04','Review & refinement','Apply feedback and check product consistency and feasibility.'],
+  ['05','Development handoff','Prepare approved visuals and technical information for sampling or production.'],
+];
+const visual = [
+  ['01','Reference & asset intake','Collect design references, garment information, dimensions and source assets.'],
+  ['02','3D build & refinement','Create or refine geometry, garment form, details and scene structure.'],
+  ['03','Material & look development','Develop fabric response, surface qualities, lighting and camera language.'],
+  ['04','Render, motion & interaction','Create stills, turntables, animation or interactive product views.'],
+  ['05','Optimise & deliver','Prepare high-quality presentation and web-ready assets.'],
+];
+---
+<BaseLayout title="Process / Workflow" description="Apparel development and 3D visual production workflows.">
+  <section class="mx-auto max-w-[1440px] px-5 pb-24 pt-16 sm:px-8 sm:pt-20 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">Process / Workflow</p>
+    <h1 class="mt-5 max-w-5xl font-display text-5xl leading-[.94] tracking-[-.05em] sm:text-7xl">Product thinking.<br/><span class="text-signal">Visual execution.</span></h1>
+    <p class="mt-6 max-w-2xl text-sm leading-6 text-ink-soft">Two connected but distinct workflows: one focused on developing the garment, the other on building and delivering its digital presentation.</p>
+    <div class="mt-14 grid gap-10 lg:grid-cols-2">
+      {[{label:'A / APPAREL DEVELOPMENT',title:'Design to technical handoff',intro:'A product-aware process from the first brief through garment design development and clear communication.',steps:apparel},{label:'B / 3D VISUAL PRODUCTION',title:'Digital build to final presentation',intro:'A visual production process from source information to finished imagery, turntables and interactive assets.',steps:visual}].map((flow) => <article class="border-t-2 border-ink pt-6"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">{flow.label}</p><h2 class="mt-4 font-display text-3xl sm:text-4xl">{flow.title}</h2><p class="mt-3 max-w-md text-sm leading-6 text-ink-soft">{flow.intro}</p><div class="mt-7">{flow.steps.map((step)=><div class="grid grid-cols-[42px_1fr] gap-3 border-t border-line py-4"><span class="font-mono text-xs text-signal">{step[0]}</span><div><h3 class="text-sm font-medium">{step[1]}</h3><p class="mt-1 text-xs leading-5 text-ink-soft">{step[2]}</p></div></div>)}</div></article>)}
+    </div>
+  </section>
+</BaseLayout>

@@ -2,77 +2,150 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
-import WorkRow from '@/components/WorkRow.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-import { SITE } from '@/site.config';
+import { SITE, WORK_CATEGORIES } from '@/site.config';
 
-const allWork = await getCollection('work', ({ data }) => !data.draft);
-const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featured = sorted.filter((entry) => entry.data.featured);
-const rest = sorted.filter((entry) => !entry.data.featured);
-const selected = [...featured, ...rest].slice(0, 5);
+const projects = await getCollection('work', ({ data }) => !data.draft);
+const featured = projects.filter((entry) => entry.data.featured).sort((a,b) => b.data.date.valueOf()-a.data.date.valueOf()).slice(0,3);
+const capabilities = [
+  ['01','Apparel development','Garment design understanding, product detailing, materials, trims and production-aware development.'],
+  ['02','3D garment visualisation','Digital garment modelling, texturing, product rendering and interactive 3D presentation.'],
+  ['03','Technical design','Technical flats, construction details, measurements and clear tech-pack communication.'],
+  ['04','Visual storytelling','Product animation, compositing, motion and presentation assets.'],
+];
+const tools = [
+  { group:'3D / MODELLING', names:['Blender','Autodesk Maya','ZBrush'] },
+  { group:'TEXTURING', names:['Substance 3D Painter'] },
+  { group:'IMAGE / GRAPHIC', names:['Adobe Photoshop','Adobe Illustrator'] },
+  { group:'MOTION / ANIMATION', names:['Adobe After Effects','Toon Boom'] },
+];
+const apparelSteps = [
+  ['01','Brief & product intent','Clarify the product, target user, brand direction and design constraints.'],
+  ['02','Design development','Explore silhouette, colour, materials, trims and visual direction.'],
+  ['03','Technical development','Resolve garment details, flats, measurements and construction communication.'],
+  ['04','Review & refinement','Apply feedback and check product consistency and feasibility.'],
+  ['05','Development handoff','Prepare approved visuals and technical information for sampling or production.'],
+];
+const visualSteps = [
+  ['01','Reference & asset intake','Collect design references, garment information, dimensions and source assets.'],
+  ['02','3D build & refinement','Create or refine geometry, garment form, details and scene structure.'],
+  ['03','Material & look development','Develop fabric response, surface qualities, lighting and camera language.'],
+  ['04','Render, motion & interaction','Create stills, turntables, animation or interactive product views.'],
+  ['05','Optimise & deliver','Prepare high-quality presentation and web-ready assets.'],
+];
 ---
-
-<BaseLayout title={SITE.name}>
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
-    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
-      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
-      {SITE.status}
-    </p>
-
-    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
-      {SITE.tagline}
-    </h1>
-
-    <p class="text-ink-soft mt-6 max-w-md">
-      {SITE.role} — based on the work below, not a list of buzzwords.
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <Button href="/work" variant="solid">View the work →</Button>
-      <Button href="#contact" variant="ghost">Say hello</Button>
-    </div>
-  </section>
-
-  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Selected work" count={allWork.length} />
-    <div>
-      {selected.map((entry) => <WorkRow entry={entry} />)}
-    </div>
-    {
-      allWork.length > selected.length && (
-        <div class="mt-6">
-          <a
-            href="/work"
-            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
-          >
-            View all {allWork.length} projects →
-          </a>
+<BaseLayout title={SITE.name} description={SITE.description}>
+  <section class="relative isolate overflow-hidden border-b border-line">
+    <div class="pointer-events-none absolute inset-0 -z-10" style="background:radial-gradient(ellipse at 80% 32%,color-mix(in srgb,var(--signal) 13%,transparent),transparent 42%),radial-gradient(ellipse at 12% 90%,#28364a33,transparent 38%)"></div>
+    <div class="mx-auto grid max-w-[1440px] items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[.83fr_1.17fr] lg:gap-14 lg:px-12 lg:py-24">
+      <div class="relative z-10">
+        <p class="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[.2em] text-signal sm:text-[10px]"><span class="h-px w-8 bg-signal"></span> Textile engineering × 3D product craft</p>
+        <h1 class="mt-7 max-w-2xl font-display text-[clamp(3.6rem,7.4vw,7.5rem)] leading-[.87] tracking-[-.065em]">Apparel,<br/><span class="text-signal">reimagined</span><br/>in 3D.</h1>
+        <p class="mt-7 max-w-xl text-base leading-7 text-ink-soft sm:text-lg">I connect garment knowledge, technical design and digital visualisation to bring products from concept to compelling presentation.</p>
+        <p class="mt-5 font-mono text-[9px] uppercase tracking-[.14em] text-ink-soft">3D Artist · Apparel Engineering · Digital Product Visualisation</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/work" variant="solid">Explore portfolio ↗</Button>
+          <Button href={SITE.linkedin} variant="ghost">LinkedIn message ↗</Button>
         </div>
-      )
-    }
+        <div class="mt-12 border-t border-line pt-5">
+          <p class="font-mono text-[9px] uppercase tracking-[.16em] text-ink-soft">Current position</p>
+          <p class="mt-2 text-sm">Design Director · Mavimex Ltd.</p>
+          <p class="mt-1 text-xs text-ink-soft">Apparel design, technical development & digital product presentation</p>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-3 border border-signal/20"></div>
+        <div class="relative overflow-hidden border border-line bg-[#090c11]">
+          <div class="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-5">
+            <span class="font-mono text-[9px] uppercase tracking-[.17em] text-white/65">Interactive 3D / Garment study 001</span>
+            <span class="font-mono text-[9px] text-[#a7aaff]">SKETCHFAB VIEWER</span>
+          </div>
+          <div class="aspect-[4/3] w-full sm:aspect-[5/4]">
+            <iframe
+              title="Interactive 3D hoodie model demonstration by Virtual Pandora"
+              src="https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f/embed?autostart=1&autospin=0.12&ui_theme=dark&ui_infos=0"
+              class="h-full w-full border-0"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              referrerpolicy="strict-origin-when-cross-origin"
+              loading="eager"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="flex flex-col justify-between gap-2 border-t border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:px-5">
+            <span class="font-mono text-[8px] uppercase tracking-wider text-white/55">Demo asset · Not a portfolio project</span>
+            <a href="https://sketchfab.com/3d-models/hoodie-97611a53e3b846f69e0655b210f72b2f" target="_blank" rel="noopener noreferrer" class="font-mono text-[9px] text-[#a7aaff] hover:text-white">Model by Virtual Pandora · CC BY ↗</a>
+          </div>
+        </div>
+        <div class="mt-3 flex justify-between font-mono text-[8px] uppercase tracking-[.13em] text-ink-soft"><span>Rotate · zoom · inspect</span><a href="/3d-studio" class="text-signal hover:underline">Enter 3D Studio ↗</a></div>
+      </div>
+    </div>
   </section>
 
-  <section id="about" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="About" />
-    <p class="text-ink-soft max-w-xl">
-      {SITE.description}
-    </p>
-    <a href="/about" class="text-signal mt-4 inline-block font-mono text-xs hover:underline">
-      More about how I work →
-    </a>
+  <section class="border-b border-line bg-surface">
+    <div class="mx-auto grid max-w-[1440px] gap-px bg-line sm:grid-cols-3">
+      <div class="bg-surface px-5 py-5 sm:px-8 lg:px-12"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Foundation</p><p class="mt-2 font-display text-xl">Textile Engineering</p></div>
+      <div class="bg-surface px-5 py-5 sm:px-8 lg:px-12"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Professional focus</p><p class="mt-2 font-display text-xl">Apparel + Technical Design</p></div>
+      <div class="bg-surface px-5 py-5 sm:px-8 lg:px-12"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Digital output</p><p class="mt-2 font-display text-xl">3D + Visualisation</p></div>
+    </div>
   </section>
 
-  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
-    <SectionHeading eyebrow="Let's talk" />
-    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
-      Have something worth building?
-    </p>
-    <a
-      href={`mailto:${SITE.email}`}
-      class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline"
-    >
-      {SITE.email}
-    </a>
+  <section id="work" class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div><p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">01 / Portfolio</p><h2 class="mt-4 font-display text-4xl tracking-[-.045em] sm:text-6xl">Work, clearly<br/>categorised.</h2></div>
+      <p class="max-w-lg text-sm leading-6 text-ink-soft">A structured view across apparel design, 3D product visualisation, technical development and motion. Each case study will pair the finished result with the process and decisions behind it.</p>
+    </div>
+    <div class="mt-10 grid gap-3 sm:grid-cols-2">
+      {WORK_CATEGORIES.map((category, index) => (
+        <a href={`/work/category/${category.id}`} class:list={['group relative min-h-[255px] overflow-hidden border border-line p-6 transition-all duration-300 hover:-translate-y-1 hover:border-signal sm:min-h-[300px] sm:p-8', index===1 ? 'bg-[#171a25]' : index===2 ? 'bg-[#161c23]' : 'bg-surface']}>
+          <div class="absolute -right-16 -top-20 h-64 w-64 rounded-full border border-signal/15 transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="absolute -right-5 -top-10 h-44 w-44 rounded-full border border-signal/10"></div>
+          <div class="relative flex h-full min-h-[205px] flex-col justify-between sm:min-h-[245px]">
+            <div class="flex items-center justify-between"><span class="font-mono text-[9px] uppercase tracking-[.17em] text-signal">{category.number} / CATEGORY</span><span class="font-mono text-xs text-ink-soft transition-transform group-hover:translate-x-1">↗</span></div>
+            <div><h3 class="max-w-md font-display text-3xl leading-[1.02] tracking-tight sm:text-4xl">{category.label}</h3><p class="mt-3 max-w-sm text-xs leading-5 text-ink-soft">{category.description}</p></div>
+            <span class="font-mono text-[9px] uppercase tracking-wider text-ink-soft">Explore category <span class="text-signal">→</span></span>
+          </div>
+        </a>
+      ))}
+    </div>
+    {featured.length > 0 && <div class="mt-14"><div class="mb-5 flex items-end justify-between"><h3 class="font-display text-2xl">Featured projects</h3><a href="/work" class="font-mono text-[9px] uppercase text-signal">All work ↗</a></div><div class="grid gap-4 md:grid-cols-3">{featured.map((entry) => <a href={`/work/${entry.id}`} class="border border-line bg-surface p-5 hover:border-signal"><p class="font-mono text-[9px] uppercase text-signal">{entry.data.category}</p><h4 class="mt-4 font-display text-2xl">{entry.data.title}</h4><p class="mt-2 text-xs leading-5 text-ink-soft">{entry.data.summary}</p></a>)}</div></div>}
+  </section>
+
+  <section id="capabilities" class="border-y border-line bg-[#10141c] text-[#eff0f5]">
+    <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <div class="grid gap-8 lg:grid-cols-[.75fr_1.25fr]">
+        <div><p class="font-mono text-[9px] uppercase tracking-[.2em] text-[#9b9eff]">02 / Capabilities</p><h2 class="mt-4 font-display text-4xl leading-[.98] tracking-tight sm:text-6xl">A hybrid skill set.<br/>One product mindset.</h2><p class="mt-6 max-w-sm text-sm leading-6 text-white/55">The value is not the software alone. It is the ability to connect garment construction, design intent and visual execution.</p></div>
+        <div class="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
+          {capabilities.map((skill) => <article class="bg-[#10141c] p-6 sm:p-8"><p class="font-mono text-[9px] text-[#9b9eff]">{skill[0]} / DISCIPLINE</p><h3 class="mt-7 font-display text-2xl">{skill[1]}</h3><p class="mt-3 text-sm leading-6 text-white/55">{skill[2]}</p></article>)}
+        </div>
+      </div>
+      <div class="mt-14 border-t border-white/15 pt-8">
+        <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-end"><h3 class="font-display text-3xl">Software & tools</h3><span class="font-mono text-[9px] uppercase tracking-[.15em] text-white/40">Production toolkit / grouped by discipline</span></div>
+        <div class="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">{tools.map((group) => <div><p class="mb-4 font-mono text-[9px] uppercase tracking-[.16em] text-[#9b9eff]">{group.group}</p><ul class="space-y-3">{group.names.map((name) => <li class="border-b border-white/10 pb-3 text-sm text-white/85">{name}</li>)}</ul></div>)}</div>
+        <p class="mt-7 max-w-2xl text-xs leading-5 text-white/40">Tools are grouped by their production role. We can add accurate proficiency levels after reviewing your confidence and professional use of each one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+    <div class="grid gap-6 md:grid-cols-[1fr_.8fr] md:items-end"><div><p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">03 / How I work</p><h2 class="mt-4 font-display text-4xl leading-[.98] tracking-[-.04em] sm:text-6xl">From the product brief<br/>to the final pixel.</h2></div><p class="max-w-md text-sm leading-6 text-ink-soft md:justify-self-end">Two distinct workflows show how I approach apparel development and 3D visual production. They connect when a project needs both.</p></div>
+    <div class="mt-12 grid gap-8 lg:grid-cols-2">
+      {[{label:'A / APPAREL DEVELOPMENT',title:'Design → technical handoff',steps:apparelSteps},{label:'B / 3D VISUAL PRODUCTION',title:'Digital asset → final presentation',steps:visualSteps}].map((flow) => <article class="border-t-2 border-ink pt-6"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">{flow.label}</p><h3 class="mt-4 font-display text-3xl sm:text-4xl">{flow.title}</h3><div class="mt-7">{flow.steps.map((step) => <div class="grid grid-cols-[38px_1fr] gap-3 border-t border-line py-4"><span class="font-mono text-xs text-signal">{step[0]}</span><div><h4 class="text-sm font-medium">{step[1]}</h4><p class="mt-1 text-xs leading-5 text-ink-soft">{step[2]}</p></div></div>)}</div></article>)}
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-surface">
+    <div class="mx-auto grid max-w-[1440px] gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[.75fr_1.25fr] lg:px-12">
+      <div><p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">04 / Professional snapshot</p><h2 class="mt-4 font-display text-4xl">Creative execution.<br/>Production awareness.</h2></div>
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div><p class="font-mono text-[9px] uppercase tracking-wider text-signal">Current role</p><h3 class="mt-3 font-display text-2xl">Design Director</h3><p class="mt-2 text-sm text-ink-soft">Mavimex Ltd.</p><p class="mt-4 text-xs leading-5 text-ink-soft">Apparel design direction, technical development and digital garment presentation.</p></div>
+        <div><p class="font-mono text-[9px] uppercase tracking-wider text-signal">Foundation</p><h3 class="mt-3 font-display text-2xl">Textile Engineering</h3><p class="mt-2 text-sm text-ink-soft">Product and material understanding</p><p class="mt-4 text-xs leading-5 text-ink-soft">Bringing construction, material and garment knowledge into the design and visualisation process.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+    <div class="relative overflow-hidden border border-signal/35 bg-surface px-7 py-12 sm:px-12 sm:py-16">
+      <div class="absolute -right-12 -top-24 h-80 w-80 rounded-full border border-signal/15"></div><div class="absolute -right-2 -top-14 h-60 w-60 rounded-full border border-signal/15"></div>
+      <div class="relative max-w-3xl"><p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">05 / Hiring & collaboration</p><h2 class="mt-5 font-display text-5xl leading-[.94] tracking-[-.04em] sm:text-7xl">Looking for a hybrid creative?</h2><p class="mt-6 max-w-xl text-sm leading-6 text-ink-soft">For apparel design, 3D product visualisation, technical design roles, digital product development or creative collaborations, let's connect.</p><div class="mt-8 flex flex-wrap gap-3"><Button href={SITE.linkedin} variant="solid">Message on LinkedIn ↗</Button><Button href="/work" variant="ghost">Review work categories</Button></div><p class="mt-8 font-mono text-[9px] text-ink-soft">EXTENDED CASE STUDIES / AVAILABLE ON REQUEST · PRIVATE SECTION TO BE CONFIGURED</p></div>
+    </div>
   </section>
 </BaseLayout>

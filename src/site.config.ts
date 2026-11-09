@@ -10,9 +10,9 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: 'Work', href: '/work' },
-  { label: '3D Studio', href: '/3d-studio' },
-  { label: 'Process', href: '/#process' },
+  { label: 'Process', href: '/process' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ] as const;
 
 export const WORK_CATEGORIES = [

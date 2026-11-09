@@ -1,22 +1,21 @@
-// Edit this file to re-label the entire site. Header, Footer, the homepage
-// and SEO defaults all read from here instead of hardcoding copy.
 export const SITE = {
-  name: 'John Doe',
-  role: 'Product design & frontend engineering',
-  email: 'johndoe@example.com',
-  tagline: 'I design and build interfaces that hold up under real use.',
+  name: 'Imtiaz Asif',
+  role: '3D Artist · Apparel Engineering · Digital Product Visualisation',
+  email: 'hello@imtiaz-asif.com',
+  tagline: 'Apparel knowledge.\nDigital craft.\nVisual impact.',
   description:
-    'Portfolio of John Doe — product design and frontend engineering, with an emphasis on speed, clarity, and the details most people skip.',
-  status: 'Currently building at Studio Co · open to new work, Q3 2026',
+    'I am a textile engineer and 3D artist working across apparel development, technical design and digital product visualisation. My work connects garment understanding with clear, compelling visual communication.',
+  status: 'Independent 3D artist · Apparel & product visualisation',
   social: [
-    { label: 'GitHub', href: 'https://github.com/your-username' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-username' },
-    { label: 'X', href: 'https://x.com/your-username' },
+    { label: 'Portfolio', href: 'https://imtiaz-asif.com' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
   ],
   locale: 'en',
 } as const;
 
 export const NAV_LINKS = [
   { label: 'Work', href: '/work' },
+  { label: 'Capabilities', href: '/#capabilities' },
+  { label: 'Process', href: '/#process' },
   { label: 'About', href: '/about' },
 ] as const;

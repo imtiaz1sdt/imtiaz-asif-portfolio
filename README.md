@@ -27,7 +27,8 @@ The CMS edits Git-backed content; it is not a database or a replacement for Astr
 ## Media handling
 
 - Small portfolio images can be uploaded through Pages CMS into `public/media/`.
-- Larger originals, videos and 3D files should stay in a dedicated media service (for example ImageKit or Sketchfab) and be referenced by URL. Avoid committing large binaries to Git.
+- For a larger library, use ImageKit's media library and paste its URLs into the `coverUrl` / `galleryUrls` fields in Pages CMS. The current ImageKit Forever Free plan lists 3 GB storage and 20 GB monthly bandwidth; its signup page says no credit card is required. Review current limits before uploading a full archive.
+- Large originals, video masters and 3D source files should not be committed to Git. Keep them in dedicated media storage; publish optimised previews only.
 - Sketchfab model UIDs are stored per project and rendered in an embedded viewer.
 
 ## Local development

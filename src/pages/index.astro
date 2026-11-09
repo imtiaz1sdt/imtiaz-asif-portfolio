@@ -38,8 +38,8 @@ const modelUrl = 'https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f/
           {label:'Contact',index:'04',href:'/contact'},
         ].map((item) => (
           <a href={item.href} class="hero-nav-link group flex items-center justify-between gap-3 border-b border-white/15 px-3 py-4 transition-colors hover:bg-white/5 sm:border-b-0 sm:px-5 sm:py-5 [&:nth-child(odd)]:border-r [&:nth-child(odd)]:border-white/15 sm:[&:not(:last-child)]:border-r sm:[&:not(:last-child)]:border-white/15">
-            <span class="flex items-center gap-3"><span class="font-mono text-[9px] text-[#8589ff]">{item.index}</span><span class="font-mono text-[9px] uppercase tracking-[.12em] text-white/75 transition-colors group-hover:text-white sm:text-[10px]">{item.label}</span></span>
-            <span class="text-xs text-white/35 transition-all group-hover:translate-x-1 group-hover:text-[#a4a8ff]">↗</span>
+            <span class="flex items-center gap-3"><span class="hero-nav-index font-mono text-[9px] text-[#8589ff]">{item.index}</span><span class="hero-nav-label font-mono text-[9px] uppercase tracking-[.12em] text-white/75 transition-colors group-hover:text-white sm:text-[10px]">{item.label}</span></span>
+            <span class="hero-nav-arrow text-xs text-white/35 transition-all group-hover:translate-x-1 group-hover:text-[#a4a8ff]">↗</span>
           </a>
         ))}
       </nav>

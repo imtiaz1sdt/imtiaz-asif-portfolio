@@ -2,9 +2,9 @@
 import { SITE } from '@/site.config';
 const year = new Date().getFullYear();
 ---
-<footer class="border-t border-line">
-  <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 font-mono text-[10px] uppercase tracking-wider text-ink-soft sm:flex-row sm:items-center sm:justify-between sm:px-8">
-    <p>© {year} {SITE.name} · Independent creative practice</p>
-    <a href="#top" class="transition-colors hover:text-signal">Back to top ↑</a>
+<footer class="border-t border-line bg-ink text-paper">
+  <div class="mx-auto flex max-w-[1440px] flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
+    <div><p class="font-display text-xl">{SITE.name}<span class="text-signal">.</span></p><p class="mt-1 font-mono text-[9px] uppercase tracking-wider text-paper/55">© {year} · 3D / Apparel / Visualisation</p></div>
+    <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-wider text-paper transition-colors hover:text-signal">Connect on LinkedIn <span class="text-signal">↗</span></a>
   </div>
 </footer>

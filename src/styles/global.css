@@ -13,8 +13,8 @@
   --surface: #141820;
   --surface-raised: #1a202a;
   --signal-soft: #b3b5ff;
-  --ff-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, "Segoe UI", sans-serif;
-  --ff-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+  --ff-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", sans-serif;
+  --ff-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
   --ff-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 .light {
@@ -161,3 +161,21 @@
 .light .home-brand { color: #17191f !important; }
 .light .home-label { color: #4e535d !important; }
 .light .home-hero .hero-meta { color: #555b66 !important; }
+
+
+/* Explicit modern UI typography across all headings and body copy. */
+body, input, button, textarea, select {
+  font-family: var(--ff-body) !important;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--ff-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.hero-title {
+  font-family: var(--ff-display) !important;
+  font-size: clamp(3.25rem, 8.4vw, 8.6rem);
+  font-weight: 700 !important;
+  letter-spacing: -0.075em !important;
+  line-height: .88;
+}

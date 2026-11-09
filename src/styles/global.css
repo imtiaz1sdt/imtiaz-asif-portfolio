@@ -3,22 +3,22 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  color-scheme: dark;
-  --paper: #101210;
-  --ink: #ecefe5;
-  --ink-soft: #a0a79b;
-  --signal: #c5e56a;
-  --line: #343b31;
-  --surface: #191e19;
+  color-scheme: light;
+  --paper: #eeeae1;
+  --ink: #171817;
+  --ink-soft: #686a65;
+  --signal: #e45132;
+  --line: #cbc7bd;
+  --surface: #e5e1d8;
 }
 .dark {
-  color-scheme: dark;
-  --paper: #101210;
-  --ink: #ecefe5;
-  --ink-soft: #a0a79b;
-  --signal: #c5e56a;
-  --line: #343b31;
-  --surface: #191e19;
+  color-scheme: light;
+  --paper: #eeeae1;
+  --ink: #171817;
+  --ink-soft: #686a65;
+  --signal: #e45132;
+  --line: #cbc7bd;
+  --surface: #e5e1d8;
 }
 @theme inline {
   --color-paper: var(--paper);
@@ -40,7 +40,7 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: var(--color-signal); color: var(--color-paper); }
+  ::selection { background: var(--color-signal); color: #fff; }
   :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }

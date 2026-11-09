@@ -1,26 +1,30 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Button from '@/components/Button.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
-const strengths = ['Textile engineering foundation', '3D garment and product visualisation', 'Technical design and garment communication', 'Digital presentation and motion'];
+const areas = [
+  'Textile engineering foundation',
+  'Apparel design and garment development',
+  '3D garment and product visualisation',
+  'Technical design and product communication',
+  'Motion, image and digital presentation',
+];
 ---
-<BaseLayout title="About" description={`About ${SITE.name} — textile engineering, 3D apparel and digital product visualisation.`}>
-  <section class="mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-8 sm:pt-24">
-    <p class="font-mono text-[10px] uppercase tracking-[.2em] text-signal">About / Background</p>
-    <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight sm:text-7xl">Where textile knowledge meets digital craft.</h1>
-    <div class="mt-12 grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
-      <div class="prose prose-invert max-w-2xl text-sm leading-7">
-        <p>I am a textile engineer and 3D artist working at the intersection of apparel development, technical design and digital product visualisation.</p>
-        <p>My approach brings product understanding into the visual process: how a garment is shaped, how its materials and details work, and how those decisions can be communicated clearly through technical and digital presentation.</p>
-        <p>I enjoy work that connects creative direction with practical execution — from garment visuals and technical communication to rendered assets and motion-led presentation.</p>
+<BaseLayout title="About" description={`About ${SITE.name} — textile engineering, apparel development and 3D product visualisation.`}>
+  <section class="mx-auto max-w-[1440px] px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">About / Background</p>
+    <h1 class="mt-5 max-w-5xl font-display text-5xl leading-[.92] tracking-[-.05em] sm:text-7xl">Product understanding.<br/><span class="italic text-signal">Visual intelligence.</span></h1>
+    <div class="mt-14 grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+      <div class="max-w-2xl space-y-5 text-sm leading-7 text-ink-soft">
+        <p class="font-display text-2xl leading-relaxed text-ink">I am a textile engineer and 3D artist working across apparel development, technical design and digital product visualisation.</p>
+        <p>My background helps me look beyond the appearance of a garment and consider its form, material, construction and intended use. I bring that product understanding into visual development — from technical flats and garment details to 3D models, material studies and digital presentation.</p>
+        <p>I am interested in work where design thinking and practical execution meet: communicating product ideas clearly, refining details, and building digital assets that help teams and clients understand a product before it exists physically.</p>
+        <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-3 border border-ink px-5 py-3 font-mono text-[10px] uppercase tracking-wider text-ink transition-colors hover:bg-ink hover:text-paper">Connect on LinkedIn ↗</a>
       </div>
-      <aside class="border border-line bg-surface p-7">
-        <p class="font-mono text-[10px] uppercase tracking-[.16em] text-signal">Areas of practice</p>
-        <ul class="mt-6 space-y-4">{strengths.map((item) => <li class="flex gap-3 border-b border-line pb-4 text-sm"><span class="text-signal">↗</span>{item}</li>)}</ul>
-        <p class="mt-6 text-xs leading-5 text-ink-soft">Professional experience, selected clients and measurable project outcomes will be added with verified details.</p>
+      <aside class="border border-line bg-surface p-7 sm:p-9">
+        <p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Areas of practice</p>
+        <ul class="mt-7 space-y-4">{areas.map((item, i) => <li class="flex gap-4 border-b border-line pb-4 text-sm"><span class="font-mono text-[10px] text-signal">0{i+1}</span><span>{item}</span></li>)}</ul>
+        <p class="mt-7 text-xs leading-5 text-ink-soft">Professional experience, selected clients and project outcomes will be added with verified details and approved portfolio material.</p>
       </aside>
     </div>
-    <div class="mt-12"><SectionHeading eyebrow="Let's connect"/><Button href={`mailto:${SITE.email}`}>Contact me ↗</Button></div>
   </section>
 </BaseLayout>

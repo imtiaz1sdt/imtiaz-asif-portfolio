@@ -1,135 +1,66 @@
-<div align="center">
+# Imtiaz Asif — Portfolio
 
-# Portfolio Starter
+Personal portfolio for **3D Artist · Apparel Engineering · Digital Product Visualisation**.
 
-A minimal, professional portfolio template for **Astro**. Built for people who want
-something that looks intentional on day one, without a component library you didn't ask for.
+Built with Astro and deployed on Cloudflare Pages.
 
-[**Live Demo**](https://astro-starter-portfolio.vercel.app) · [Report an issue](https://github.com/BracoZS/astro-starter-portfolio/issues)
+## Portfolio structure
 
-<br />
+- **Work** — category-led case studies for apparel, 3D visualisation, technical design and motion.
+- **3D Studio** — Sketchfab-powered interactive garment viewing.
+- **Capabilities** — apparel, 3D, technical communication and motion.
+- **Process** — apparel development and 3D visual production workflows.
+- **About** — professional background and contact.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBracoZS%2Fastro-starter-portfolio)
-&nbsp;
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/BracoZS/astro-starter-portfolio)
+## Content editing
 
-</div>
+The project includes a [Pages CMS](https://app.pagescms.org/) configuration in `.pages.yml`.
 
-<br />
+1. Sign in to Pages CMS with the GitHub account that has write access to this repository.
+2. Authorize the repository in Pages CMS.
+3. Edit the **Portfolio projects** collection.
+4. Add a title, summary, role, category, date, tags, cover image, gallery, optional Sketchfab model UID, deliverables and case-study body.
+5. Save. Pages CMS writes the changes to GitHub; Cloudflare Pages builds the updated site.
 
-<div align="center">
-  <img src="./public/og-image.png" alt="Portfolio Starter preview" width="100%" style="max-width: 720px; border-radius: 8px;" />
-</div>
+The CMS edits Git-backed content; it is not a database or a replacement for Astro/Cloudflare.
 
-<br />
+## Media handling
 
-## Features
+- Small portfolio images can be uploaded through Pages CMS into `public/media/`.
+- Larger originals, videos and 3D files should stay in a dedicated media service (for example ImageKit or Sketchfab) and be referenced by URL. Avoid committing large binaries to Git.
+- Sketchfab model UIDs are stored per project and rendered in an embedded viewer.
 
-- **Astro 7** — static output, zero client-side JavaScript by default
-- **Tailwind CSS v4** — CSS-first config, no `tailwind.config.js` needed
-- **Content Collections** with a typed Zod schema — add a project by dropping a Markdown file in `src/content/work/`
-- **Light & dark mode** — class-based, no flash of unstyled theme on load
-- **Astro Fonts API** — self-hosted Google Fonts, zero layout shift, no third-party requests
-- **View Transitions** — smooth navigation between pages
-- **SEO defaults done right** — canonical URLs, Open Graph, Twitter cards, auto-generated sitemap
-- **Strict TypeScript** — `astro/tsconfigs/strict`, path aliases (`@/components/*`, etc.)
-- One accent color and two font variables control the entire visual identity
+## Local development
 
-No state management, no UI kit, no CMS integration —
-add those yourself if your project actually needs them.
-
-## Quick start
+Requires Node.js 22+.
 
 ```bash
-git clone https://github.com/BracoZS/astro-starter-portfolio.git
-cd astro-starter-portfolio
 pnpm install
 pnpm dev
 ```
 
-> Any package manager works.
+Build:
 
-Open `http://localhost:4321`.
-
-| Command        | Action                                             |
-| -------------- | -------------------------------------------------- |
-| `pnpm dev`     | Start the local dev server                         |
-| `pnpm build`   | Type-check, then build for production to `./dist/` |
-| `pnpm preview` | Preview the production build locally               |
-| `pnpm check`   | Run `astro check` only                             |
-
-## Project structure
-
-```text
-├── public/
-│   ├── favicon.svg
-│   ├── favicons/
-│   ├── og-image.png          # replace with your own 1200×630 image
-│   └── robots.txt
-├── src/
-│   ├── assets/               # static images and assets
-│   ├── components/           # BaseHead, Button, Footer, Header, SectionHeading, ThemeToggle, WorkRow
-│   ├── content/
-│   │   └── work/*.md         # one file per project
-│   ├── layouts/
-│   │   └── BaseLayout.astro  # <head>, SEO, fonts, theme script
-│   ├── pages/
-│   │   ├── index.astro
-│   │   ├── about.astro
-│   │   ├── work/[id].astro
-│   │   └── 404.astro
-│   ├── styles/
-│   │   └── global.css        # design tokens + Tailwind import
-│   ├── utils/
-│   │   └── formatDate.ts     # date formatting helpers
-│   ├── content.config.ts     # Zod schema for the "work" collection
-│   └── site.config.ts        # name, bio, email, social links
-├── astro.config.mjs
-└── tsconfig.json
+```bash
+pnpm build
+pnpm preview
 ```
 
-## Customizing
+## Deployment
 
-**Your info.** Edit `src/site.config.ts` — name, tagline, email, and social links are
-read from this one file by the header, footer, and homepage.
+Cloudflare Pages is connected to the GitHub repository. The production branch is `main`; branch pushes create preview deployments.
 
-**Colors.** Edit the five custom properties at the top of `src/styles/global.css`
-(`--paper`, `--ink`, `--ink-soft`, `--signal`, `--line`). Every component reads from
-these tokens, so changing them re-skins the whole site.
+- Build command: `npm run build` (or `pnpm build`)
+- Output directory: `dist`
 
-**Fonts.** Swap the three families in the `fonts` array in `astro.config.mjs`. Any
-family available from Google Fonts works — Astro self-hosts it automatically.
+The site currently uses the Cloudflare `pages.dev` address. A custom domain is not required.
 
-**Projects.** Add a Markdown file to `src/content/work/`. Required frontmatter is
-enforced by the schema in `src/content.config.ts`:
+## Security and privacy
 
-```md
----
-title: Project Name
-summary: One sentence, shown in the list view.
-role: Your role on the project
-date: 2026-01-15
-tags: [Astro, TypeScript]
-url: https://example.com # optional
-repo: https://github.com/... # optional
-featured: true # optional, shows it first on the homepage
----
+The public website is intended for public portfolio work. Do not commit confidential client material, passwords, API keys or private project files to a public repository. Public repository contents and public website assets can be copied. A password prompt on a public static page does not make files in a public repository private.
 
-Full write-up in Markdown.
-```
+Private extended work must live in a private repository or protected asset store, with server-side access control. Keep all credentials in Cloudflare encrypted secrets, never in the source tree.
 
-**Open Graph image.** Replace `public/og-image.png` with your own 1200×630 image.
+## Attribution
 
-## Deploying
-
-This is a static site — it deploys anywhere that serves static files.
-
-See Astro's [deployment guides](https://docs.astro.build/en/guides/deploy/) for
-Vercel, Netlify, Cloudflare Pages, and others. Remember to update the `site` value
-in `astro.config.mjs` to your real domain before building — it's used for the
-sitemap and canonical URLs.
-
-## License
-
-MIT — see [LICENSE](./LICENSE). Free to use for personal or commercial projects,
-attribution appreciated but not required.
+The temporary Sketchfab demonstration on the 3D Studio page is credited to its original creator and is not represented as Imtiaz Asif's work. Replace it with an original model before public portfolio launch.

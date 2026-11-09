@@ -23,26 +23,13 @@ const modelUrl = 'https://sketchfab.com/models/97611a53e3b846f69e0655b210f72b2f/
     <div class="home-left-shade pointer-events-none absolute inset-0 -z-10"></div>
     <div class="home-top-shade pointer-events-none absolute inset-0 -z-10"></div>
 
-    <div class="relative mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-end px-5 pb-5 pt-28 sm:px-8 sm:pb-7 lg:px-12">
+    <div class="relative mx-auto flex min-h-[100svh] max-w-[1600px] flex-col justify-end px-5 pb-28 pt-28 sm:px-8 sm:pb-32 lg:px-12">
       <div class="hero-copy mb-12 max-w-3xl sm:mb-16">
         <p class="hero-eyebrow mb-5 flex items-center gap-3 font-mono text-[9px] uppercase tracking-[.24em] text-[#a9adff] sm:text-[10px]"><span class="h-px w-8 bg-[#8589ff]"></span> Apparel engineering × digital product craft</p>
         <h1 class="hero-title font-display text-[clamp(3.2rem,8.5vw,8.7rem)] font-medium leading-[.84] tracking-[-.065em] text-white">Apparel.<br/><span class="hero-accent text-[#a4a8ff]">Engineered</span><br/>in 3D.</h1>
         <p class="hero-subtitle mt-6 max-w-lg text-sm leading-6 text-white/65 sm:text-base">Imtiaz Asif — 3D Artist, Apparel Engineering & Digital Product Visualisation.</p>
       </div>
 
-      <nav aria-label="Main portfolio sections" class="hero-nav grid grid-cols-2 border-y border-white/20 sm:grid-cols-4">
-        {[
-          {label:'Work',index:'01',href:'/work'},
-          {label:'Process / Workflow',index:'02',href:'/process'},
-          {label:'About',index:'03',href:'/about'},
-          {label:'Contact',index:'04',href:'/contact'},
-        ].map((item) => (
-          <a href={item.href} class="hero-nav-link group flex items-center justify-between gap-3 border-b border-white/15 px-3 py-4 transition-colors hover:bg-white/5 sm:border-b-0 sm:px-5 sm:py-5 [&:nth-child(odd)]:border-r [&:nth-child(odd)]:border-white/15 sm:[&:not(:last-child)]:border-r sm:[&:not(:last-child)]:border-white/15">
-            <span class="flex items-center gap-3"><span class="hero-nav-index font-mono text-[9px] text-[#8589ff]">{item.index}</span><span class="hero-nav-label font-mono text-[9px] uppercase tracking-[.12em] text-white/75 transition-colors group-hover:text-white sm:text-[10px]">{item.label}</span></span>
-            <span class="hero-nav-arrow text-xs text-white/35 transition-all group-hover:translate-x-1 group-hover:text-[#a4a8ff]">↗</span>
-          </a>
-        ))}
-      </nav>
       <div class="hero-meta mt-4 flex flex-col justify-between gap-2 font-mono text-[8px] uppercase tracking-[.12em] text-white/35 sm:flex-row sm:items-center">
         <span>3D Artist / Apparel Engineering / Digital Product Visualisation</span>
         <span>Background model: Hoodie by Virtual Pandora · CC BY</span>

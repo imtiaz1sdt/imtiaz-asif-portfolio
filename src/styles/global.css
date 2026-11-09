@@ -109,5 +109,5 @@
 .light .home-hero .hero-nav { border-color: #17191f44 !important; }
 .light .home-hero .hero-nav-link { border-color: #17191f22 !important; }
 .light .home-hero .hero-nav-link span { color: #3d4350 !important; }
-.light .home-hero .hero-nav-link span.text-\\[\\#8589ff\\] { color: #5057d9 !important; }
+.light .home-hero .hero-nav-index,\n.light .home-hero .hero-nav-arrow { color: #5057d9 !important; }\n.light .home-hero .hero-nav-label { color: #333843 !important; }\n.light .home-brand { color: #17191f !important; }\n.light .home-label { color: #4e535d !important; }
 .light .home-hero .hero-meta { color: #555b66 !important; }

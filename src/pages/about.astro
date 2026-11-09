@@ -1,15 +1,53 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/site.config';
-const strengths = ['Textile engineering and material understanding','Apparel design and garment development','3D garment and product visualisation','Technical design and product communication','Motion, image and digital presentation'];
+const strengths = [
+  ['01','Apparel & product development','Garment design, silhouette, material direction, product detailing and design refinement.'],
+  ['02','3D apparel visualisation','Digital garment presentation, modelling, texturing, lighting and product rendering.'],
+  ['03','Technical design communication','Flats, construction details, measurements and production-facing documentation.'],
+  ['04','Visual presentation','Product imagery, motion, compositing and digital storytelling.'],
+];
+const tools = ['Blender','Autodesk Maya','ZBrush','Substance 3D Painter','Adobe Photoshop','Adobe Illustrator','Adobe After Effects','Toon Boom'];
+const roleFamilies = ['3D Apparel Artist','3D Product Visualisation Specialist','Apparel / Technical Designer','Digital Product Development'];
 ---
-<BaseLayout title="About" description={`About ${SITE.name} — apparel engineering, 3D and digital product visualisation.`}>
-  <section class="mx-auto max-w-[1440px] px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:px-12">
-    <p class="font-mono text-[9px] uppercase tracking-[.2em] text-signal">About / Background</p>
-    <h1 class="mt-5 max-w-5xl font-display text-5xl leading-[.92] tracking-[-.05em] sm:text-7xl">An apparel mindset.<br/><span class="text-signal">A digital skill set.</span></h1>
-    <div class="mt-14 grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
-      <div class="max-w-2xl space-y-5 text-sm leading-7 text-ink-soft"><p class="font-display text-2xl leading-relaxed text-ink">I am a textile engineer and 3D artist working across apparel development, technical design and digital product visualisation.</p><p>My background helps me look beyond the appearance of a garment and consider its form, material, construction and intended use. I bring that product understanding into visual development — from technical flats and garment details to 3D models, material studies and digital presentation.</p><p>I am interested in work where design thinking and practical execution meet: communicating product ideas clearly, refining details, and building digital assets that help teams and clients understand a product before it exists physically.</p><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-3 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-wider text-ink transition-colors hover:border-signal hover:text-signal">Connect on LinkedIn ↗</a></div>
-      <aside class="border border-line bg-surface p-7 sm:p-9"><p class="font-mono text-[9px] uppercase tracking-[.16em] text-signal">Areas of practice</p><ul class="mt-7 space-y-4">{strengths.map((item,i)=><li class="flex gap-4 border-b border-line pb-4 text-sm"><span class="font-mono text-[10px] text-signal">0{i+1}</span><span>{item}</span></li>)}</ul><p class="mt-7 text-xs leading-5 text-ink-soft">Detailed career history, selected clients and measurable project outcomes will be added with verified details and approved portfolio material.</p></aside>
+<BaseLayout title="About" description={`Professional profile of ${SITE.name} — textile engineering, apparel development and 3D product visualisation.`}>
+  <section class="mx-auto max-w-[1440px] px-5 pb-20 pt-16 sm:px-8 sm:pt-20 lg:px-12">
+    <p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">Profile / About</p>
+    <h1 class="mt-5 max-w-5xl font-display text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-7xl">A textile engineer<br/>working in <span class="text-signal">3D.</span></h1>
+    <p class="mt-7 max-w-3xl text-base leading-7 text-ink-soft sm:text-lg">I connect apparel knowledge, technical design and digital product visualisation. My work moves between understanding how a garment is designed and constructed, and communicating that product clearly through 3D and visual presentation.</p>
+
+    <div class="mt-12 grid gap-3 sm:grid-cols-3">
+      <div class="border border-line bg-surface p-5 sm:p-6"><p class="font-mono text-[8px] uppercase tracking-[.16em] text-signal">Education</p><p class="mt-3 font-display text-xl font-medium">BSc Textile Engineering</p><p class="mt-2 text-xs text-ink-soft">Textile and material foundation</p></div>
+      <div class="border border-line bg-surface p-5 sm:p-6"><p class="font-mono text-[8px] uppercase tracking-[.16em] text-signal">Current position</p><p class="mt-3 font-display text-xl font-medium">Design Director</p><p class="mt-2 text-xs text-ink-soft">Mavimex Ltd.</p></div>
+      <div class="border border-line bg-surface p-5 sm:p-6"><p class="font-mono text-[8px] uppercase tracking-[.16em] text-signal">Professional focus</p><p class="mt-3 font-display text-xl font-medium">Apparel × 3D</p><p class="mt-2 text-xs text-ink-soft">Technical development and digital product visuals</p></div>
+    </div>
+
+    <div class="mt-20 grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">01 / What I bring</p>
+        <h2 class="mt-4 font-display text-4xl font-semibold leading-tight tracking-[-.045em]">Product knowledge.<br/>Visual execution.</h2>
+        <p class="mt-5 max-w-sm text-sm leading-6 text-ink-soft">I aim to bridge the gap between a design idea, the garment's technical realities and the way the finished product is presented.</p>
+      </div>
+      <div class="grid gap-px border border-line bg-line sm:grid-cols-2">
+        {strengths.map((item) => <article class="bg-paper p-6 sm:p-7"><p class="font-mono text-[9px] text-signal">{item[0]} / CAPABILITY</p><h3 class="mt-5 font-display text-xl font-semibold">{item[1]}</h3><p class="mt-3 text-sm leading-6 text-ink-soft">{item[2]}</p></article>)}
+      </div>
+    </div>
+
+    <div class="mt-16 border border-line bg-surface p-6 sm:p-8">
+      <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end"><div><p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">02 / Software</p><h2 class="mt-3 font-display text-3xl font-semibold tracking-[-.04em]">Production toolkit</h2></div><p class="font-mono text-[8px] uppercase tracking-wider text-ink-soft">Grouped by discipline</p></div>
+      <div class="mt-7 flex flex-wrap gap-2">{tools.map((tool) => <span class="rounded-full border border-line bg-paper px-4 py-2.5 text-xs text-ink">{tool}</span>)}</div>
+    </div>
+
+    <div class="mt-16 grid gap-8 border-t border-line pt-10 md:grid-cols-[.7fr_1.3fr]">
+      <div><p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">03 / Role alignment</p><h2 class="mt-4 font-display text-3xl font-semibold tracking-[-.04em]">Where I can contribute.</h2></div>
+      <div><p class="max-w-2xl text-sm leading-6 text-ink-soft">Depending on the role and team, my experience is relevant to positions that combine apparel product knowledge, technical communication and 3D visual production.</p><div class="mt-5 grid gap-2 sm:grid-cols-2">{roleFamilies.map((role) => <div class="flex items-center gap-3 border border-line px-4 py-4 text-sm"><span class="text-signal">↗</span>{role}</div>)}</div></div>
+    </div>
+
+    <div class="mt-16 border border-signal/30 bg-surface p-6 sm:p-8">
+      <p class="font-mono text-[9px] uppercase tracking-[.18em] text-signal">For recruiters / International applications</p>
+      <h2 class="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-[-.04em] sm:text-4xl">One portfolio. Application documents tailored to the market.</h2>
+      <p class="mt-4 max-w-3xl text-sm leading-6 text-ink-soft">For European vacancies, I will provide a Europass CV when requested and a tailored country-specific CV for the employer. For Germany, France and Belgium, application language and supporting documents will follow the vacancy and local requirements. For the USA and Canada, I will use a separate, ATS-friendly résumé. Detailed project evidence can be shared through the portfolio and extended case studies.</p>
+      <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 border border-signal px-5 py-3 font-mono text-[9px] uppercase tracking-wider text-signal transition-colors hover:bg-signal hover:text-white">Contact on LinkedIn ↗</a>
     </div>
   </section>
 </BaseLayout>

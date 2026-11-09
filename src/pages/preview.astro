@@ -16,32 +16,43 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       </div>
     </div>
 
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-home" checked/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-work"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-category"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-case"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-studio"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-process"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-about"/>
+    <input class="showroom-radio" type="radio" name="preview-tab" id="preview-contact"/>
+    <input class="showroom-radio" type="radio" name="preview-size" id="preview-size-desktop" checked/>
+    <input class="showroom-radio" type="radio" name="preview-size" id="preview-size-mobile"/>
+
     <div class="showroom-toolbar sticky top-[58px] z-30 mt-7 flex flex-col gap-3 border border-line bg-paper/95 p-3 backdrop-blur-xl sm:top-[66px] sm:flex-row sm:items-center sm:justify-between">
-      <nav class="showroom-tabs flex gap-1 overflow-x-auto" aria-label="Choose a page template" role="tablist">
-        <button class="showroom-tab is-active" role="tab" aria-selected="true" data-preview-tab="home">01 Home</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="work">02 Work</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="category">03 Category</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="case">04 Case study</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="studio">05 3D Studio</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="process">06 Process</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="about">07 About</button>
-        <button class="showroom-tab" role="tab" aria-selected="false" data-preview-tab="contact">08 Contact</button>
+      <nav class="showroom-tabs flex gap-1 overflow-x-auto" aria-label="Choose a page template">
+        <label class="showroom-tab" for="preview-home">01 Home</label>
+        <label class="showroom-tab" for="preview-work">02 Work</label>
+        <label class="showroom-tab" for="preview-category">03 Category</label>
+        <label class="showroom-tab" for="preview-case">04 Case study</label>
+        <label class="showroom-tab" for="preview-studio">05 3D Studio</label>
+        <label class="showroom-tab" for="preview-process">06 Process</label>
+        <label class="showroom-tab" for="preview-about">07 About</label>
+        <label class="showroom-tab" for="preview-contact">08 Contact</label>
       </nav>
       <div class="flex shrink-0 items-center gap-2">
         <span class="mr-1 font-mono text-[8px] uppercase tracking-[.15em] text-ink-soft">Viewport</span>
-        <button class="showroom-size is-active" data-preview-size="desktop" aria-pressed="true">Desktop</button>
-        <button class="showroom-size" data-preview-size="mobile" aria-pressed="false">Mobile</button>
+        <label class="showroom-size" for="preview-size-desktop">Desktop</label>
+        <label class="showroom-size" for="preview-size-mobile">Mobile</label>
       </div>
     </div>
 
     <div class="mt-5 flex items-center justify-between gap-3">
-      <p class="font-mono text-[8px] uppercase tracking-[.16em] text-ink-soft">Live design concept / <span id="preview-current" class="text-signal">01 — Home</span></p>
+      <p class="font-mono text-[8px] uppercase tracking-[.16em] text-ink-soft">Live design concept / <span class="text-signal">01—08 / Select a page</span></p>
       <p class="font-mono text-[8px] uppercase tracking-[.16em] text-ink-soft">Sample imagery only · not portfolio claims</p>
     </div>
 
     <div id="preview-canvas" class="preview-canvas mt-4">
       <!-- HOME -->
-      <section class="preview-panel is-active" data-preview-panel="home" role="tabpanel">
+      <section class="preview-panel" data-preview-panel="home">
         <div class="demo-screen demo-home">
           <div class="demo-nav"><span>IMTIAZ ASIF<span class="text-[#a8aaff]">.</span></span><span class="demo-nav-right">APPAREL / 3D / DIGITAL PRODUCT <b>◐</b></span></div>
           <div class="demo-home-art" style="background-image:linear-gradient(90deg,#090b10 0%,#090b10cc 36%,#090b1030 100%),url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=85')"></div>
@@ -52,7 +63,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       </section>
 
       <!-- WORK -->
-      <section class="preview-panel" data-preview-panel="work" role="tabpanel" hidden>
+      <section class="preview-panel" data-preview-panel="work">
         <div class="demo-screen demo-page">
           <div class="demo-page-top"><p class="demo-eyebrow">PORTFOLIO / SELECTED WORK</p><div class="demo-meta">01—04 / DISCIPLINES</div></div>
           <h2 class="demo-display">Selected work.<br/><span>Distinct disciplines.</span></h2>
@@ -155,7 +166,55 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   .showroom-tab,.showroom-size{white-space:nowrap;border:1px solid transparent;padding:10px 12px;font:9px var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);transition:all .2s}
   .showroom-tab:hover,.showroom-size:hover{color:var(--ink);border-color:var(--line)}
   .showroom-tab.is-active,.showroom-size.is-active{background:var(--signal);border-color:var(--signal);color:#fff}
-  .preview-panel[hidden]{display:none}
+  .showroom-radio{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  .preview-panel{display:none}
+  #preview-home:checked ~ #preview-canvas [data-preview-panel="home"],
+  #preview-work:checked ~ #preview-canvas [data-preview-panel="work"],
+  #preview-category:checked ~ #preview-canvas [data-preview-panel="category"],
+  #preview-case:checked ~ #preview-canvas [data-preview-panel="case"],
+  #preview-studio:checked ~ #preview-canvas [data-preview-panel="studio"],
+  #preview-process:checked ~ #preview-canvas [data-preview-panel="process"],
+  #preview-about:checked ~ #preview-canvas [data-preview-panel="about"],
+  #preview-contact:checked ~ #preview-canvas [data-preview-panel="contact"]{display:block}
+  #preview-home:checked ~ .showroom-toolbar label[for="preview-home"],
+  #preview-work:checked ~ .showroom-toolbar label[for="preview-work"],
+  #preview-category:checked ~ .showroom-toolbar label[for="preview-category"],
+  #preview-case:checked ~ .showroom-toolbar label[for="preview-case"],
+  #preview-studio:checked ~ .showroom-toolbar label[for="preview-studio"],
+  #preview-process:checked ~ .showroom-toolbar label[for="preview-process"],
+  #preview-about:checked ~ .showroom-toolbar label[for="preview-about"],
+  #preview-contact:checked ~ .showroom-toolbar label[for="preview-contact"],
+  #preview-size-desktop:checked ~ .showroom-toolbar label[for="preview-size-desktop"],
+  #preview-size-mobile:checked ~ .showroom-toolbar label[for="preview-size-mobile"]{background:var(--signal);border-color:var(--signal);color:#fff}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-screen{max-width:430px;margin-inline:auto;min-height:780px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-nav-right{display:none}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-home-art{inset:0;background-position:60% center;opacity:.47}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-home-copy{width:100%;padding:115px 7% 210px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-home-copy h2{font-size:55px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-home-links{grid-template-columns:repeat(2,1fr)}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-home-links span{padding:14px 10px;border-bottom:1px solid #ffffff25}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-page{padding:7%}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-work-grid,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-category-grid,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-flow-grid{grid-template-columns:1fr}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-work-card img{height:180px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-case-head,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-studio-head,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-about-grid,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-case-lower,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-contact-content{grid-template-columns:1fr;gap:24px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-facts{grid-template-columns:1fr 1fr}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-case-hero img{height:210px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-case-thumbs img{height:82px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-viewer{height:260px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-about-visual{height:220px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-about-stats,
+  #preview-size-mobile:checked ~ #preview-canvas .demo-capability-strip{grid-template-columns:1fr 1fr}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-contact-content{padding:16% 8%}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-contact-content h2{font-size:62px}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-contact-content aside{border-left:0;border-top:1px solid #ffffff30;padding:20px 0 0}
+  #preview-size-mobile:checked ~ #preview-canvas .demo-contact-bottom{font-size:7px}
+  #preview-size-mobile:checked ~ #preview-canvas .preview-caption{align-items:flex-start;flex-direction:column}
   .demo-screen{position:relative;overflow:hidden;border:1px solid var(--line);background:#0c0e12;color:#f0f1f4;min-height:560px;transition:max-width .25s ease,margin .25s ease}
   .preview-canvas.is-mobile .demo-screen{max-width:430px;margin-inline:auto;min-height:780px}
   .demo-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 5%;font:600 12px var(--ff-display);letter-spacing:-.03em}
@@ -296,43 +355,4 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   }
 </style>
 
-<script>
-  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-preview-tab]')];
-  const panels = [...document.querySelectorAll<HTMLElement>('[data-preview-panel]')];
-  const current = document.querySelector<HTMLElement>('#preview-current');
-  const canvas = document.querySelector<HTMLElement>('#preview-canvas');
-  const labels = {
-    home: '01 — Home', work: '02 — Work', category: '03 — Category',
-    case: '04 — Case study', studio: '05 — 3D Studio',
-    process: '06 — Process', about: '07 — About', contact: '08 — Contact'
-  };
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const key = tab.dataset.previewTab;
-      if (!key || !(key in labels)) return;
-      const activeKey = key as keyof typeof labels;
-      tabs.forEach((item) => {
-        const active = item === tab;
-        item.classList.toggle('is-active', active);
-        item.setAttribute('aria-selected', String(active));
-      });
-      panels.forEach((panel) => {
-        const active = panel.dataset.previewPanel === activeKey;
-        panel.classList.toggle('is-active', active);
-        panel.hidden = !active;
-      });
-      if (current) current.textContent = labels[activeKey];
-    });
-  });
-  document.querySelectorAll<HTMLButtonElement>('[data-preview-size]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const mobile = button.dataset.previewSize === 'mobile';
-      canvas?.classList.toggle('is-mobile', mobile);
-      document.querySelectorAll<HTMLButtonElement>('[data-preview-size]').forEach((item) => {
-        const active = item === button;
-        item.classList.toggle('is-active', active);
-        item.setAttribute('aria-pressed', String(active));
-      });
-    });
-  });
-</script>
+

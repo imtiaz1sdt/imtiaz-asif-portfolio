@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import { Font } from 'astro:assets';
 import { SITE } from '@/site.config';
 interface Props { title: string; description?: string; image?: string; }
 const { title: pageTitle, description: pageDescription, image } = Astro.props;
@@ -13,6 +12,7 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 <meta name="author" content={SITE.name} />
+<meta name="color-scheme" content="dark light" />
 <link rel="canonical" href={canonicalURL} />
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
@@ -34,9 +34,6 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="robots" content="index, follow" />
-<Font cssVariable="--ff-display" preload />
-<Font cssVariable="--ff-body" preload />
-<Font cssVariable="--ff-mono" />
 <script is:inline>
   (() => { try { document.documentElement.classList.toggle('light', localStorage.getItem('theme') === 'light'); } catch (_) {} })();
   document.addEventListener('astro:after-swap', () => {

@@ -2,8 +2,7 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Default is the preferred dark scheme. The .light class is set before paint
-   from localStorage by BaseHead and toggled by ThemeToggle. */
+/* Deep graphite with a restrained electric-violet signal. Dark is default. */
 :root {
   color-scheme: dark;
   --paper: #0c0e12;
@@ -41,23 +40,11 @@
 @layer base {
   * { border-color: var(--color-line); }
   html { scroll-behavior: smooth; background: var(--color-paper); }
-  body {
-    margin: 0;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
+  body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   ::selection { background: var(--color-signal); color: #fff; }
   :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      scroll-behavior: auto !important;
-      animation-duration: .01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: .01ms !important;
-    }
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 }
 .prose {

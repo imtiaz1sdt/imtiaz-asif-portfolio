@@ -20,7 +20,8 @@ The project includes a [Pages CMS](https://app.pagescms.org/) configuration in `
 2. Authorize the repository in Pages CMS.
 3. Edit the **Portfolio projects** collection.
 4. Add a title, summary, role, category, date, tags, cover image, gallery, optional Sketchfab model UID, deliverables and case-study body.
-5. Save. Pages CMS writes the changes to GitHub; Cloudflare Pages builds the updated site.
+5. New entries start as drafts. Keep `draft` enabled while preparing the case study; turn it off only when the content and media are approved.
+6. Save. Pages CMS writes the changes to GitHub; Cloudflare Pages builds the updated site.
 
 The CMS edits Git-backed content; it is not a database or a replacement for Astro/Cloudflare.
 

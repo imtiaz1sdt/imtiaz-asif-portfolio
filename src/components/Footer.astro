@@ -5,9 +5,6 @@ const year = new Date().getFullYear();
 <footer class="border-t border-line">
   <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 font-mono text-[10px] uppercase tracking-wider text-ink-soft sm:flex-row sm:items-center sm:justify-between sm:px-8">
     <p>© {year} {SITE.name} · Independent creative practice</p>
-    <nav class="flex flex-wrap items-center gap-5" aria-label="Footer">
-      {SITE.social.map((link) => <a href={link.href} class="transition-colors hover:text-signal" rel="me">{link.label}</a>)}
-      <a href="#top" class="transition-colors hover:text-signal">Back to top ↑</a>
-    </nav>
+    <a href="#top" class="transition-colors hover:text-signal">Back to top ↑</a>
   </div>
 </footer>

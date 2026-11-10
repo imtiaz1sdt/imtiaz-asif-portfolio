@@ -1,6 +1,8 @@
 ---
 title: 3D Apparel Development & Product Visualisation
-summary: Temporary layout demo combining a third-party garment image and an attributed Sketchfab model. This is placeholder content, not an original client project.
+summary: Temporary layout demo combining a third-party garment image and an
+  attributed Sketchfab model. This is placeholder content, not an original
+  client project.
 role: Portfolio layout and viewer integration demonstration — not client work
 category: 3d-visualisation
 client: Temporary demo — third-party placeholder assets
@@ -10,7 +12,7 @@ tags:
   - Sketchfab Viewer
   - Product Visualisation
   - Temporary Placeholder
-coverUrl: "https://images.unsplash.com/photo-1727515192207-3dc860bfd773?auto=format&fit=crop&fm=jpg&q=80&w=1800"
+coverUrl: https://images.unsplash.com/photo-1727515192207-3dc860bfd773?auto=format&fit=crop&fm=jpg&q=80&w=1800
 sketchfabModel: 97611a53e3b846f69e0655b210f72b2f
 deliverables:
   - Temporary cover image from Unsplash
@@ -18,7 +20,6 @@ deliverables:
 featured: false
 draft: true
 ---
-
 ## Temporary portfolio demonstration
 
 This entry is being used to test the portfolio layout, image presentation and embedded Sketchfab viewer. It is not a completed client case study and must be replaced before the portfolio is used for job applications.

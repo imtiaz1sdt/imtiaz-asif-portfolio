@@ -9,9 +9,15 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  immersive?: boolean;
 }
 
-const { title, description = SITE.description, image = '/og-image.png' } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  image = '/og-image.png',
+  immersive = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,11 +25,11 @@ const { title, description = SITE.description, image = '/og-image.png' } = Astro
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body id="top" class="bg-paper text-ink">
+  <body id="top" class:list={['bg-paper text-ink', immersive && 'immersive-layout']}>
     <Header />
     <main>
       <slot />
     </main>
-    <Footer />
+    {!immersive && <Footer />}
   </body>
 </html>
